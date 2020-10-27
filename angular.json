@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ePatientFrontend"
+    }
+  },
+  "defaultProject": "ePatientFrontend",
+  "cli": {
+    "analytics": false
+  }
 }
