@@ -7,19 +7,7 @@
         <img src="../assets/images/logo/draft_logo.png" alt="ePatient Logo" id="login_logo" />
       </header>
       <article id="login_body">
-        <div id="login_message">
-          <p>
-            This is sample text.
-          </p>
-        </div>
-        <div id="login_form_pane">
-          <!-- TODO: The action should change! -->
-          <form action="/??" method="post" id="login_form">
-            <input type="email" name="login_email" placeholder="Email" required />
-            <input type="password" name="login_password" placeholder="Password" required />
-            <button>Login</button>
-          </form> 
-        </div>
+        <router-outlet></router-outlet>
       </article>
       <footer id="login_footer">
         <ul id="login_footer_credits">
@@ -31,3 +19,4 @@
     </div>
   </body>
 </html>
+
