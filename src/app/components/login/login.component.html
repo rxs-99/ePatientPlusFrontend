@@ -1,0 +1,11 @@
+<div id="login_message">
+    <p>
+    sample text
+    </p>
+</div>
+<div id="login_form_pane">
+    <input [(ngModel)]="login.username" placeholder="Username" />
+    <input type="password" [(ngModel)]="login.password" placeholder="Password" />
+    <input type="submit" (click)="submitCreds()"/>
+    <p id="incorrect_credentials_message" *ngIf="invalid">Incorrect login information</p>
+</div>

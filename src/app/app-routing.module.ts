@@ -3,9 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { PatientHomeComponent } from './components/patient-home/patient-home.component';
 import { NurseHomeComponent } from './components/nurse-home/nurse-home.component';
 import { DoctorHomeComponent } from './components/doctor-home/doctor-home.component';
+import { LoginComponent } from './components/login/login.component';
 import { PatientInfoComponent } from './components/patient-info/patient-info.component';
 
 const routes: Routes = [
+  { path: "login", component: LoginComponent},
 	{
 		path: "patient",
 		component: PatientHomeComponent
@@ -21,7 +23,8 @@ const routes: Routes = [
 	{
 		path: "profile/:id",
 		component: PatientInfoComponent
-	}
+	},
+  { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({
