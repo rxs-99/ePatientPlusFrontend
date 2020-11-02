@@ -1,1 +1,7 @@
 <p>patient-profile-edit works!</p>
+<form [formGroup]="personEditForm" (ngSubmit)="editPersonInfo(personEditForm.value)">
+  <input type="text" name="name" formControlName="name" value="{{person.name}}"/>
+  <input type="email" name="email" formControlName="email" value={{person.email}} />
+  <input type="text" name="phone" formControlName="phone" value={{person.phone}} />
+  <button type="submit">Submit Edits</button>
+</form>

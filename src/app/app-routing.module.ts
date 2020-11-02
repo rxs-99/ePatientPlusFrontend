@@ -4,6 +4,7 @@ import { PatientHomeComponent } from './components/patient-home/patient-home.com
 import { NurseHomeComponent } from './components/nurse-home/nurse-home.component';
 import { DoctorHomeComponent } from './components/doctor-home/doctor-home.component';
 import { PatientInfoComponent } from './components/patient-info/patient-info.component';
+import { PatientProfileEditComponent } from './components/patient-profile-edit/patient-profile-edit.component';
 
 const routes: Routes = [
 	{
@@ -21,6 +22,10 @@ const routes: Routes = [
 	{
 		path: "profile/:id",
 		component: PatientInfoComponent
+	},
+	{
+		path: "edit_profile/:id",
+		component: PatientProfileEditComponent
 	}
 ];
 

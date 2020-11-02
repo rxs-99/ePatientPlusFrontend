@@ -8,7 +8,7 @@ import { GetPatientService } from 'src/app/services/get-patient.service';
   styleUrls: ['./patient-info.component.css']
 })
 export class PatientInfoComponent implements OnInit {
-  person: Person = null;
+  person: Person = new Person(0, "", "", "");;
 
   constructor(private personService: GetPatientService) { }
 

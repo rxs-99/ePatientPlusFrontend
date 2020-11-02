@@ -12,6 +12,7 @@ import { PatientProfileEditComponent } from './components/patient-profile-edit/p
 import { AppointmentSubmissionComponent } from './components/appointment-submission/appointment-submission.component';
 
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,12 +23,15 @@ import { AppRoutingModule } from './app-routing.module';
     PatientInfoComponent,
     PrescriptionsInfoComponent,
     PatientProfileEditComponent,
-    AppointmentSubmissionComponent
+    AppointmentSubmissionComponent,
+    PatientProfileEditComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
