@@ -6,6 +6,8 @@ import { DoctorHomeComponent } from './components/doctor-home/doctor-home.compon
 import { LoginComponent } from './components/login/login.component';
 import { PatientInfoComponent } from './components/patient-info/patient-info.component';
 import { PatientProfileEditComponent } from './components/patient-profile-edit/patient-profile-edit.component';
+import { AppointmentSubmissionComponent } from './components/appointment-submission/appointment-submission.component';
+import { PrescriptionsInfoComponent } from './components/prescriptions-info/prescriptions-info.component';
 
 const routes: Routes = [
 	{
@@ -27,6 +29,14 @@ const routes: Routes = [
 	{
 		path: "edit_profile/:id",
 		component: PatientProfileEditComponent
+	},
+	{
+		path: "create_appt",
+		component: AppointmentSubmissionComponent
+	},
+	{
+		path: "prescriptions/:id",
+		component: PrescriptionsInfoComponent
 	},
   { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
