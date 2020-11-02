@@ -7,7 +7,6 @@ import { LoginComponent } from './components/login/login.component';
 import { PatientInfoComponent } from './components/patient-info/patient-info.component';
 
 const routes: Routes = [
-	{ path: "login", component: LoginComponent},
 	{
 		path: "patient",
 		component: PatientHomeComponent
@@ -25,7 +24,7 @@ const routes: Routes = [
 		component: PatientInfoComponent
 	},
 	{ path: '', redirectTo: '/login', pathMatch: 'full' },
-]
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
