@@ -8,7 +8,6 @@ import { PatientInfoComponent } from './components/patient-info/patient-info.com
 import { PatientProfileEditComponent } from './components/patient-profile-edit/patient-profile-edit.component';
 
 const routes: Routes = [
-  { path: "login", component: LoginComponent},
 	{
 		path: "patient",
 		component: PatientHomeComponent
