@@ -8,6 +8,19 @@
       </header>
       <article id="login_body">
         <router-outlet></router-outlet>
+        <div id="login_message">
+          <p>
+            This is sample text.
+          </p>
+        </div>
+        <div id="login_form_pane">
+          <!-- TODO: The action should change! -->
+          <form action="/??" method="post" id="login_form">
+            <input type="email" name="login_email" placeholder="Email" required />
+            <input type="password" name="login_password" placeholder="Password" required />
+            <button>Login</button>
+          </form> 
+        </div>
       </article>
       <footer id="login_footer">
         <ul id="login_footer_credits">
