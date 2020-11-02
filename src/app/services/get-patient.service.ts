@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Person } from '../models/person';
 import { Observable } from 'rxjs';
 
@@ -13,5 +13,12 @@ export class GetPatientService {
 
   getPerson(id: number): Observable<Person> {
     return this.httpClient.get("http://localhost:8080/ePatient/person/get/" + id) as Observable<Person>;
+  }
+
+  setPerson(id: number, newPerson: Person): Observable<Object> {
+    let httpHeader: HttpHeaders = new HttpHeaders().set("content-type", "application/json");
+    let jsonPerson: string = JSON.stringify(newPerson);
+
+    return this.httpClient.post("http://localhost:8080/ePatient/person/edit", jsonPerson, {headers: httpHeader});
   }
 }
