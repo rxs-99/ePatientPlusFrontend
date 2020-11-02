@@ -1,1 +1,7 @@
 <p>appointment-submission works!</p>
+<form [formGroup]="apptCreateForm" (ngSubmit)="createAppointment(apptCreateForm.value)">
+  <input type="text" name="appt_doctor" formControlName="doctor" />
+  <input type="datetime" name="appt_date" formControlName="datetime" >
+  <textarea name="appt_comments" formControlName="comments" cols="30" rows="10"></textarea>
+  <button>Submit Appointment Request</button>
+</form>
