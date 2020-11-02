@@ -7,7 +7,6 @@ import { LoginComponent } from './components/login/login.component';
 import { PatientInfoComponent } from './components/patient-info/patient-info.component';
 
 const routes: Routes = [
-  { path: "login", component: LoginComponent},
 	{
 		path: "patient",
 		component: PatientHomeComponent
@@ -24,7 +23,7 @@ const routes: Routes = [
 		path: "profile/:id",
 		component: PatientInfoComponent
 	},
-  { path: '', redirectTo: '/login', pathMatch: 'full' }
+	{ path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
 
 @NgModule({

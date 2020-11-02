@@ -14,7 +14,6 @@ import { PrescriptionsInfoComponent } from './components/prescriptions-info/pres
 import { PatientProfileEditComponent } from './components/patient-profile-edit/patient-profile-edit.component';
 import { AppointmentSubmissionComponent } from './components/appointment-submission/appointment-submission.component';
 
-import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
@@ -32,7 +31,7 @@ import { LoginComponent } from './components/login/login.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule, 
+    FormsModule,
     AppRoutingModule
   ],
   providers: [],
