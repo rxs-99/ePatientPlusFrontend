@@ -15,8 +15,8 @@ export class AppointmentService {
     return this.httpClient.get("http://localhost:8080/ePatient/appointment/all") as Observable<Appointment[]>;
   }
 
-  getAllUnapprovedAppointments() : Observable<Appointment[]> {
+  getAllPendingAppointments() : Observable<Appointment[]> {
 
-    return this.httpClient.get("http://localhost:8080/ePatient/appointment/status/unapproved") as Observable<Appointment[]>;
+    return this.httpClient.get("http://localhost:8080/ePatient/appointment/status/pending") as Observable<Appointment[]>;
   }
 }

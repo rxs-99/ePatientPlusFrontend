@@ -1,3 +1,4 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Person } from './person';
 
 export class Appointment{
@@ -20,7 +21,10 @@ export class Appointment{
     }
 
 
+
     // these were generated using vs code
+
+
 
     /**
      * Getter $id
@@ -100,7 +104,13 @@ export class Appointment{
      */
 	public set $date(value: Date) {
 		this.date = value;
-	}
+    }
+    
+
+    public getFormattedDate():String {
+
+        return "cool"
+    }
 
     /**
      * Setter $status

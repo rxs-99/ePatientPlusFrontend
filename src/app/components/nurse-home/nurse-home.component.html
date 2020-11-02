@@ -1,1 +1,16 @@
-<p>nurse-home please update!</p>
+<table>
+<tr>
+<th>Patient</th>
+<th>Doctor</th>
+<th>Date</th>
+<th>Status</th>
+<th>Comment</th>
+</tr>
+<tr *ngFor="let app of appointments">
+<td>{{app.patient.name}}</td>
+<td>{{app.doctor.name}}</td>
+<td>{{app.date | date}}</td>
+<td>{{app.status}}</td>
+<td>{{app.comment}}</td>
+</tr>
+</table>
