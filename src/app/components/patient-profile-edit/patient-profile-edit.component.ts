@@ -10,6 +10,7 @@ export class PatientProfileEditComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }
