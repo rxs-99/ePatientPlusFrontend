@@ -9,7 +9,7 @@
 /* Header */
 
 #login_header {
-  height: 100px;
+  height: 150px;
   width: 100%;
   
   background-image: url("../assets/images/textures/rough_diagonal.png");
@@ -20,7 +20,29 @@
   z-index: 10;
 }
 
-/* Article */
+/* Footer */
+
+#login_footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  height: 100px;
+  width: 100%;
+  
+  background-image: url("../assets/images/textures/rough_diagonal.png");
+
+  font-family: "Barlow", sans-serif;
+}
+
+#login_footer_credits {
+  margin-bottom: 10px;
+  margin-right: 10px;
+
+  text-align: right;
+  list-style: none;
+}
+
+/* login box */
 
 #login_body {
   flex-grow: 1;
@@ -83,26 +105,4 @@
   font-size: 1.5em;
 
   background-color: #CC7777;
-}
-
-/* Footer */
-
-#login_footer {
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  height: 100px;
-  width: 100%;
-  
-  background-image: url("../assets/images/textures/rough_diagonal.png");
-
-  font-family: "Barlow", sans-serif;
-}
-
-#login_footer_credits {
-  margin-bottom: 10px;
-  margin-right: 10px;
-
-  text-align: right;
-  list-style: none;
 }
