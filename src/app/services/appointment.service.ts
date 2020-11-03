@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Appointment } from '../models/appointment';
 import { Observable } from 'rxjs';
 
@@ -19,4 +19,14 @@ export class AppointmentService {
 
     return this.httpClient.get("http://localhost:8080/ePatient/appointment/status/pending") as Observable<Appointment[]>;
   }
+
+  updateAppointment(appointment:Appointment){
+
+    //We must manually construct our HTTP header and Body.
+    let headers:HttpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+    let body = JSON.stringify(appointment) 
+
+    return this.httpClient.post("http://localhost:8080/ePatient/appointment/update", body, {headers:headers});
+  }
+
 }

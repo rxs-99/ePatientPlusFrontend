@@ -20,6 +20,26 @@ export class NurseHomeComponent implements OnInit {
   appointments:Appointment[] = [];
 
 
+  approve(index:number) : void
+  {
+    console.log("approve" + index);
+    this.appointments[index].status = "approved"
+    this.appointmentService.updateAppointment(this.appointments[index]).subscribe(()=>{
+      console.log(this.appointments[index])
+      this.appointments.splice(index, 1)
+    });
+  }
+  
+  deny(index:number) : void
+  {
+    console.log("deny" + index);
+   this.appointments[index].status= "denied"
+    this.appointmentService.updateAppointment(this.appointments[index]).subscribe(()=>{
+      console.log(this.appointments[index])
+      this.appointments.splice(index, 1)
+    });
+  }
+
   getPendingAppointments(): void {
     this.appointmentService.getAllPendingAppointments().subscribe(
      
@@ -28,7 +48,5 @@ export class NurseHomeComponent implements OnInit {
         this.appointments = data});
 
   }
-
-
 
 }

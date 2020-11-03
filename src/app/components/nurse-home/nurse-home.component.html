@@ -1,16 +1,21 @@
 <table>
-<tr>
-<th>Patient</th>
-<th>Doctor</th>
-<th>Date</th>
-<th>Status</th>
-<th>Comment</th>
-</tr>
-<tr *ngFor="let app of appointments">
-<td>{{app.patient.name}}</td>
-<td>{{app.doctor.name}}</td>
-<td>{{app.date | date}}</td>
-<td>{{app.status}}</td>
-<td>{{app.comment}}</td>
-</tr>
+    <tr>
+        <th>Patient</th>
+        <th>Doctor</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Comment</th>
+        <th>Approve/Deny</th>
+    </tr>
+    <tr *ngFor="let app of appointments; let i=index;">
+        <td>{{app.patient.name}}</td>
+        <td>{{app.doctor.name}}</td>
+        <td>{{app.date | date}}</td>
+        <td>{{app.status}}</td>
+        <td>{{app.comment}}</td>
+        <td>
+            <button (click)="approve(i)">Approve</button>
+            <button (click)="deny(i)">Deny</button>
+        </td>
+    </tr>
 </table>
