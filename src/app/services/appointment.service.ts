@@ -10,6 +10,13 @@ export class AppointmentService {
 
   constructor(private httpClient:HttpClient) { }
 
+  createAppointment(appointment: Appointment) {
+    let headers:HttpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+    let body = JSON.stringify(appointment) 
+
+    return this.httpClient.post("http://localhost:8080/ePatient/appointment/new", body, {headers:headers});
+  }
+
   getAllAppointments() : Observable<Appointment[]> {
 
     return this.httpClient.get("http://localhost:8080/ePatient/appointment/all") as Observable<Appointment[]>;
