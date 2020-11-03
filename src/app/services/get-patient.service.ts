@@ -15,6 +15,10 @@ export class GetPatientService {
     return this.httpClient.get("http://localhost:8080/ePatient/person/get/" + id) as Observable<Person>;
   }
 
+  getDoctors(): Observable<Person[]> {
+    return this.httpClient.get("http://localhost:8080/ePatient/person/get_doctors") as Observable<Person[]>;
+  }
+
   setPerson(id: number, newPerson: Person): Observable<Object> {
     let httpHeader: HttpHeaders = new HttpHeaders().set("content-type", "application/json");
     let jsonPerson: string = JSON.stringify(newPerson);
