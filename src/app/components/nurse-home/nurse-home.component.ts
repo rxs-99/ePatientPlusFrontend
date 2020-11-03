@@ -14,18 +14,39 @@ export class NurseHomeComponent implements OnInit {
   constructor(private appointmentService:AppointmentService) { }
 
   ngOnInit(): void {
-    this.getAllAppointments()
+    this.getPendingAppointments()
   }
 
   appointments:Appointment[] = [];
 
 
-  getAllAppointments(): void {
-    this.appointmentService.getAllAppointments().subscribe(
-      (data) => {this.appointments = data});
-
+  approve(index:number) : void
+  {
+    console.log("approve" + index);
+    this.appointments[index].status = "approved"
+    this.appointmentService.updateAppointment(this.appointments[index]).subscribe(()=>{
+      console.log(this.appointments[index])
+      this.appointments.splice(index, 1)
+    });
+  }
+  
+  deny(index:number) : void
+  {
+    console.log("deny" + index);
+   this.appointments[index].status= "denied"
+    this.appointmentService.updateAppointment(this.appointments[index]).subscribe(()=>{
+      console.log(this.appointments[index])
+      this.appointments.splice(index, 1)
+    });
   }
 
+  getPendingAppointments(): void {
+    this.appointmentService.getAllPendingAppointments().subscribe(
+     
+      (data) => {
+        console.log(data)
+        this.appointments = data});
 
+  }
 
 }
