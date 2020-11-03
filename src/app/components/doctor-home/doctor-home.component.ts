@@ -14,6 +14,9 @@ export class DoctorHomeComponent implements OnInit {
 
   selected_option: string;
 
+  appointmentsVisibility: boolean;
+  medicationsVisibility: boolean;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -21,6 +24,14 @@ export class DoctorHomeComponent implements OnInit {
 
   onSelect(selected_option: string): void {
     this.selected_option = selected_option;
+
+    if(selected_option === 'Appointments'){
+      this.appointmentsVisibility = true;
+      this.medicationsVisibility = false;
+    } else {
+      this.medicationsVisibility = true;
+      this.appointmentsVisibility = false;
+    }
   }
 
 }

@@ -13,6 +13,8 @@ import { HttpHeaders } from '@angular/common/http';
 export class DoctorAppointmentActionComponent implements OnInit {
   @Input() appointment: Appointment;
   
+  selectedAppointment1: Appointment = null;
+
   searchText: string = "";
   
   dosage: number;
@@ -26,7 +28,13 @@ export class DoctorAppointmentActionComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllMedications();
-    this.len = this.medications.length;
+
+    if(this.appointmentService.apmntSubsVar === undefined){
+      this.appointmentService.apmntSubsVar = this.appointmentService.invokeSelectedAppointment.subscribe((appointment: Appointment) => {
+        this.onSelectAppointment(appointment);
+      });
+    }
+
   }
 
   getAllMedications(): void{
@@ -45,11 +53,17 @@ export class DoctorAppointmentActionComponent implements OnInit {
     console.log(this.selectedMedication);
   }
 
+  onSelectAppointment(appointment: Appointment): void{
+    this.selectedAppointment1 = appointment;
+    console.log("inside action : ");
+    console.log( this.selectedAppointment1);
+  }
+
   onClickDeny(): void{
     this.appointment.status = "denied";
-    console.log(this.appointment);
     this.appointmentService.deleteSelected(this.appointment);
     console.log("after call delete");
     console.log(this.appointment);
+    console.log(this.selectedAppointment1);
   }
 }

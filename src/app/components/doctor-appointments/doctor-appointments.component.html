@@ -1,4 +1,4 @@
-<div id="doctor_appointments" *ngIf="len">
+<div id="doctor_appointments" *ngIf="appointments_length">
     <table id="doctor_pending_list">
         <thead>
             <tr>
@@ -12,10 +12,41 @@
                 <td>{{appointment.date | date: 'yyyy/MM/dd'}}</td>
                 <td>{{appointment.status}}</td>
                 <td *ngIf="appointment.comment; else naa">{{appointment.comment}}</td>
-                <ng-template #naa><td>N/A</td></ng-template>
+                <ng-template #naa>
+                    <td>N/A</td>
+                </ng-template>
             </tr>
         </tbody>
     </table>
-    <app-doctor-appointment-action [appointment]="selectedAppointment"></app-doctor-appointment-action>
-</div>
 
+    <div *ngIf="selectedAppointment">
+        <h2>{{selectedAppointment.patient.name}}</h2>
+        <ul>
+            <li>ID: {{selectedAppointment.id}}</li>
+            <li>Status: {{selectedAppointment.status}}</li>
+            <li>Date: {{selectedAppointment.date | date: 'yyyy/MM/dd'}}</li>
+            <li *ngIf="selectedAppointment.comment; else na">Comment: {{selectedAppointment.comment}}</li>
+            <ng-template #na>
+                <li>Comment: N/A
+                <li>
+            </ng-template>
+        </ul>
+
+        <button (click)="onClickDeny()">Deny</button>
+
+        <div>
+            <h2>Prescription</h2>
+            <input [(ngModel)]="searchText" placeholder="search text goes here">
+            <ul>
+                <li *ngFor="let medication of medications | filterPipe: searchText" (click)="onSelectMedication(medication)">
+                    {{medication.name}}
+                </li>
+            </ul>
+        
+            <input [(ngModel)]="dosage" placeholder="dosage">
+        
+            <button>Prescribe</button>
+        </div>
+    </div>
+
+</div>

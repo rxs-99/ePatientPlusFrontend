@@ -10,7 +10,10 @@ import { Medication } from '../models/Medication';
 export class AppointmentService {
 
   invokeDeleteSelected = new EventEmitter();
+  invokeSelectedAppointment = new EventEmitter();
+
   subsVar: Subscription;
+  apmntSubsVar: Subscription;
 
   constructor(private http:HttpClient) { }
 
@@ -26,6 +29,10 @@ export class AppointmentService {
   }
 
   deleteSelected(appointment: Appointment): void{ 
-    this.invokeDeleteSelected.emit();
+    this.invokeDeleteSelected.emit(appointment);
+  }
+
+  selectedAppointment(appointment: Appointment): void{
+    this.invokeSelectedAppointment.emit(appointment);
   }
 }

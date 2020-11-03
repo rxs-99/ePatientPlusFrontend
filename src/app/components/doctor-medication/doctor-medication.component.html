@@ -1,1 +1,41 @@
-<p>doctor-medication works!</p>
+<div id="doctor-medications" *ngIf="len">
+    <table id="doctor-medication-list">
+        <thead>
+            <tr>
+                <th *ngFor="let title of thead">{{title}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let med of medications" (click)="onSelect(med)">
+                <td>{{med.id}}</td>
+                <td>{{med.name}}</td>
+                <td>{{med.supplier}}</td>
+                <td>{{med.amountStored}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div id="add-medication">
+        <h3>Add Medication</h3>
+        <form [formGroup]="newMedicationForm" (ngSubmit)="add()">
+            <input type="text" placeholder="name" formControlName="name">
+            <input type="text" placeholder="supplier" formControlName="supplier">
+            <input type="number" placeholder="amount" formControlName="amountStored">
+            <button type="submit" [disabled]="!newMedicationForm.valid">Submit</button>
+        </form>
+
+    </div>
+
+    <div id="request-restock">
+        <h3>Request restock</h3>
+        <form [formGroup]="stockMedicationForm" (ngSubmit)="restock()">
+            <input type="text" placeholder="name" list="medication-list" formControlName="name" [(ngModel)]="restockSelectedMedicationName" (change)="restock_select(restockSelectedMedicationName)">
+            <datalist id="medication-list">
+                <option *ngFor="let medication of medications" [value]="medication.name">{{medication.name}}</option>
+            </datalist>
+            <input type="number" placeholder="amount" formControlName="amountStored">
+            <input type="submit">
+        </form>
+    </div>
+
+</div>
