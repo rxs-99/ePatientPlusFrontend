@@ -1,0 +1,19 @@
+#doctor-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    height: 100px;
+    width: 100%;
+    
+    background-image: url("../../../../assets/images/textures/rough_diagonal.png");
+  
+    font-family: "Barlow", sans-serif;
+  }
+  
+  #doctor-footer-credits {
+    margin-bottom: 10px;
+    margin-right: 10px;
+  
+    text-align: right;
+    list-style: none;
+  }

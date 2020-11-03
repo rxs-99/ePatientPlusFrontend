@@ -1,0 +1,12 @@
+#doctor-header {
+    height: 150px;
+    width: 100%;
+    
+    background-image: url("../../../../assets/images/textures/rough_diagonal.png");
+  }
+  
+  #doctor-header-logo {
+      height: 100px;
+      width: 350px;
+      padding-top: 20px;
+  }

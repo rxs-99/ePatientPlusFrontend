@@ -1,0 +1,21 @@
+<div id="doctor_appointments" *ngIf="len">
+    <table id="doctor_pending_list">
+        <thead>
+            <tr>
+                <th *ngFor="let title of thead">{{title}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let appointment of appointments" (click)="onSelect(appointment)">
+                <td>{{appointment.id}}</td>
+                <td>{{appointment.patient.name}}</td>
+                <td>{{appointment.date | date: 'yyyy/MM/dd'}}</td>
+                <td>{{appointment.status}}</td>
+                <td *ngIf="appointment.comment; else naa">{{appointment.comment}}</td>
+                <ng-template #naa><td>N/A</td></ng-template>
+            </tr>
+        </tbody>
+    </table>
+    <app-doctor-appointment-action [appointment]="selectedAppointment"></app-doctor-appointment-action>
+</div>
+
