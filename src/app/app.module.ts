@@ -27,6 +27,7 @@ import { LoginComponent } from './components/login/login.component';
     PatientProfileEditComponent,
     AppointmentSubmissionComponent,
     PatientProfileEditComponent,
+    PrescriptionsInfoComponent,
     LoginComponent
   ],
   imports: [

@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./prescriptions-info.component.css']
 })
 export class PrescriptionsInfoComponent implements OnInit {
-
+  // TODO: Prescriptions service must be implemented first.
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
+  getPrescriptions(): void {
+
+  }
 }
