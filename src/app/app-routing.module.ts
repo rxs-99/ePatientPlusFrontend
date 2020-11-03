@@ -38,6 +38,10 @@ const routes: Routes = [
 		path: "prescriptions/:id",
 		component: PrescriptionsInfoComponent
 	},
+	{
+		path: "",
+		component: LoginComponent
+	},
   { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 
