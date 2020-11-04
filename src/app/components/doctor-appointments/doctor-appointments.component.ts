@@ -106,4 +106,8 @@ export class DoctorAppointmentsComponent implements OnInit {
     console.log(prescription);
   }
 
+  onRefresh(): void{
+    this.ngOnInit();
+  }
+
 }
