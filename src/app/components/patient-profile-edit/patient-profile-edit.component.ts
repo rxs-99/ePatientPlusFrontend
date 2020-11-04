@@ -1,5 +1,6 @@
 import { Component, OnInit, SystemJsNgModuleLoader } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Person } from 'src/app/models/person';
 import { GetPatientService } from 'src/app/services/get-patient.service';
 
@@ -9,19 +10,21 @@ import { GetPatientService } from 'src/app/services/get-patient.service';
   styleUrls: ['./patient-profile-edit.component.css']
 })
 export class PatientProfileEditComponent implements OnInit {
+  personId: number;
   person: Person = new Person(0, "", "", "", null);
   personEditForm: FormGroup;
 
-  constructor(private personService: GetPatientService, private formBuilder: FormBuilder) { }
+  constructor(private personService: GetPatientService, private formBuilder: FormBuilder, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.personId = parseInt(this.route.snapshot.paramMap.get("id"));
     this.personEditForm = this.formBuilder.group({
       "name": "",
       "email": "",
       "phone": ""
     });
 
-    this.personService.getPerson(1).subscribe(
+    this.personService.getPerson(this.personId).subscribe(
       (person) => {
         this.person = person;
         this.personEditForm.setValue({
@@ -34,18 +37,6 @@ export class PatientProfileEditComponent implements OnInit {
         console.log("An error has occurred when retrieving Person info.");
       }
     );
-  }
-
-  getPersonInfo(): void {
-    // TODO id should be based off of session data; this placeholder WILL need to be replaced before demo!
-    this.personService.getPerson(1).subscribe(
-      (person) => {
-        this.person = person;
-      },
-      () => {
-        console.log("An error has occurred when retrieving Person info.");
-      }
-    )
   }
 
   editPersonInfo(personData: any): void {
