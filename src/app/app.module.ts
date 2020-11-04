@@ -15,6 +15,9 @@ import { PatientProfileEditComponent } from './components/patient-profile-edit/p
 import { AppointmentSubmissionComponent } from './components/appointment-submission/appointment-submission.component';
 
 import { LoginComponent } from './components/login/login.component';
+import { DoctorAppointmentsComponent } from './components/doctor-appointments/doctor-appointments.component';
+import { FilterPipe } from './pipes/filter-pipe.pipe';
+import { DoctorMedicationComponent } from './components/doctor-medication/doctor-medication.component';
 
 @NgModule({
   declarations: [
@@ -22,12 +25,13 @@ import { LoginComponent } from './components/login/login.component';
     PatientHomeComponent,
     NurseHomeComponent,
     DoctorHomeComponent,
+    DoctorAppointmentsComponent,
+    FilterPipe,
+    DoctorMedicationComponent,
     PatientInfoComponent,
     PrescriptionsInfoComponent,
     PatientProfileEditComponent,
     AppointmentSubmissionComponent,
-    PatientProfileEditComponent,
-    PrescriptionsInfoComponent,
     LoginComponent
   ],
   imports: [

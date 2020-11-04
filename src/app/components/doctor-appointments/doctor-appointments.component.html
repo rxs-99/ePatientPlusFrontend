@@ -1,0 +1,55 @@
+<div id="doctor_appointments" *ngIf="appointments_length">
+    <table id="doctor_pending_list">
+        <thead>
+            <tr>
+                <th *ngFor="let title of thead">{{title}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let appointment of appointments" (click)="onSelect(appointment)">
+                <td>{{appointment.id}}</td>
+                <td>{{appointment.patient.name}}</td>
+                <td>{{appointment.date | date: 'yyyy/MM/dd'}}</td>
+                <td>{{appointment.status}}</td>
+                <td *ngIf="appointment.comment; else naa">{{appointment.comment}}</td>
+                <ng-template #naa>
+                    <td>N/A</td>
+                </ng-template>
+            </tr>
+        </tbody>
+    </table>
+
+    <div *ngIf="selectedAppointment">
+        <h2>{{selectedAppointment.patient.name}}</h2>
+        <ul>
+            <li>ID: {{selectedAppointment.id}}</li>
+            <li>Status: {{selectedAppointment.status}}</li>
+            <li>Date: {{selectedAppointment.date | date: 'yyyy/MM/dd'}}</li>
+            <li *ngIf="selectedAppointment.comment; else na">Comment: {{selectedAppointment.comment}}</li>
+            <ng-template #na>
+                <li>Comment: N/A</li>
+            </ng-template>
+        </ul>
+
+        <button (click)="onClickDeny()">Deny</button>
+
+        <div>
+            <h2>Prescription</h2>
+            <input type="text" [(ngModel)]="medicationName" placeholder="medication name" list="medication-list" (change)="medicationSelect(medicationName)">
+            <datalist id="medication-list">
+                <option *ngFor="let medication of medications" [value]="medication.name">{{medication.name}}</option>
+            </datalist>
+        <!--
+            <ul>
+                <li *ngFor="let medication of medications | filterPipe: medicationName" (click)="onSelectMedication(medication)">
+                    {{medication.name}}
+                </li>
+            </ul>
+        -->
+            <input [(ngModel)]="dosage" placeholder="dosage">
+
+            <button (click)="onPrescribe()">Prescribe</button>
+        </div>
+    </div>
+
+</div>
