@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Appointment } from 'src/app/models/appointment';
-import { Medication } from 'src/app/models/medication';
-import { Prescription } from 'src/app/models/prescription';
+import { Appointment } from 'src/app/models/Appointment';
+import { Medication } from 'src/app/models/Medication';
+import { Prescription } from 'src/app/models/Prescription';
 import { AppointmentService } from 'src/app/services/appointment.service';
 import { MedicationService } from 'src/app/services/medication.service';
 import { PrescriptionService } from 'src/app/services/prescription.service';

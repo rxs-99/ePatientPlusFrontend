@@ -1,7 +1,7 @@
 export class Position {
     constructor(
-        private id: number,
-        private name: string
+        public id: number,
+        public name: string
     ) {}
 
     getId(): number{

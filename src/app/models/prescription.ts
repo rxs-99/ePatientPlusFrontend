@@ -1,5 +1,5 @@
-import { Medication } from './medication';
-import { Person } from './person';
+import { Medication } from './Medication';
+import { Person } from './Person';
 
 export class Prescription {
 
