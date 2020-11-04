@@ -3,7 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  addPrescription: "http://localhost:8080/ePatient/prescription/add",
+  getAllMedications: "http://localhost:8080/ePatient/medication/all",
+  addMedication: "http://localhost:8080/ePatient/medication/add",
+  updateMedication: "http://localhost:8080/ePatient/medication/update",
+  getAllAppointments: "http://localhost:8080/ePatient/appointment/status/pending",
+  updateAppointment: "http://localhost:8080/ePatient/appointment/update"
 };
 
 /*
