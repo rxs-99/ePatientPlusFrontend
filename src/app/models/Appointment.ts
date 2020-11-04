@@ -1,5 +1,5 @@
 import { ThrowStmt } from '@angular/compiler';
-import { Person } from './Person';
+import { Person } from './person';
 
 export class Appointment{
 
@@ -12,7 +12,6 @@ export class Appointment{
 
     constructor(id:number,  patient:Person, doctor:Person, date:Date, status:String, comment:String)
     {
-        
         this.id = id;
         this.patient = patient;
         this.doctor = doctor;

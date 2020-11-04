@@ -12,7 +12,7 @@ export class Person {
     getId(): number{
         return this.id;
 
-
+        
     } 
 
     getEmail(): string{
