@@ -1,4 +1,12 @@
-<table>
+<div style="flex-direction: row;  display: flex;">
+
+    <div style="flex-direction: column; display: flex;">
+    <button (click)="handleChoice('pending')">View Pending Appointments</button>
+    <button (click)="handleChoice('all')">View All Appointments</button>
+    <button (click)="handleChoice('patients')">View All Patients</button>
+
+</div>
+<table *ngIf="showPending">
     <tr>
         <th>Patient</th>
         <th>Doctor</th>
@@ -19,3 +27,36 @@
         </td>
     </tr>
 </table>
+
+<table *ngIf="showAllAppointments">
+    <tr>
+        <th>Patient</th>
+        <th>Doctor</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Comment</th>
+    </tr>
+    <tr *ngFor="let app of allAppointments; let i=index;">
+        <td>{{app.patient.name}}</td>
+        <td>{{app.doctor.name}}</td>
+        <td>{{app.date | date}}</td>
+        <td>{{app.status}}</td>
+        <td>{{app.comment}}</td>
+    </tr>
+</table>
+
+<table *ngIf="showPatients">
+    <tr>
+        <th>Patient ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone #</th>
+    </tr>
+    <tr *ngFor="let pat of allPatients; let i=index;">
+        <td>{{pat.id}}</td>
+        <td>{{pat.name}}</td>
+        <td>{{pat.email}}</td>
+        <td>{{pat.phone}}</td>
+    </tr>
+</table>
+</div>

@@ -9,7 +9,7 @@ import { GetPatientService } from 'src/app/services/get-patient.service';
   styleUrls: ['./patient-profile-edit.component.css']
 })
 export class PatientProfileEditComponent implements OnInit {
-  person: Person = new Person(0, "", "", "");
+  person: Person = new Person(0, "", "", "", null);
   personEditForm: FormGroup;
 
   constructor(private personService: GetPatientService, private formBuilder: FormBuilder) { }
