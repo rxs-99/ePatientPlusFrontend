@@ -1,5 +1,5 @@
 import { OnInit } from '@angular/core';
-import { Person } from '../person';
+import { Person } from './person';
 
 export class Appointment {
     id: number;

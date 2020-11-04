@@ -2,18 +2,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Appointment } from '../models/appointment';
-import { Medication } from '../models/Medication';
+import { Medication } from '../models/medication';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppointmentService {
-
-  invokeDeleteSelected = new EventEmitter();
-  invokeSelectedAppointment = new EventEmitter();
-
-  subsVar: Subscription;
-  apmntSubsVar: Subscription;
 
   constructor(private http:HttpClient) { }
 
@@ -26,13 +20,5 @@ export class AppointmentService {
     let body = JSON.stringify(appointment);
 
     return this.http.post("http://localhost:8080/ePatient/appointment/update",body, {headers:headers}) as Observable<boolean>;
-  }
-
-  deleteSelected(appointment: Appointment): void{ 
-    this.invokeDeleteSelected.emit(appointment);
-  }
-
-  selectedAppointment(appointment: Appointment): void{
-    this.invokeSelectedAppointment.emit(appointment);
   }
 }

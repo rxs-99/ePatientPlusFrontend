@@ -10,7 +10,6 @@ import { DoctorHomeComponent } from './components/doctor-home/doctor-home.compon
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { DoctorAppointmentsComponent } from './components/doctor-appointments/doctor-appointments.component';
-import { DoctorAppointmentActionComponent } from './components/doctor-appointment-action/doctor-appointment-action.component';
 import { FilterPipe } from './pipes/filter-pipe.pipe';
 import { DoctorMedicationComponent } from './components/doctor-medication/doctor-medication.component';
 
@@ -22,7 +21,6 @@ import { DoctorMedicationComponent } from './components/doctor-medication/doctor
     DoctorHomeComponent,
     LoginComponent,
     DoctorAppointmentsComponent,
-    DoctorAppointmentActionComponent,
     FilterPipe,
     DoctorMedicationComponent,
   ],

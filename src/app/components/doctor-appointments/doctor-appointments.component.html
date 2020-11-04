@@ -27,8 +27,7 @@
             <li>Date: {{selectedAppointment.date | date: 'yyyy/MM/dd'}}</li>
             <li *ngIf="selectedAppointment.comment; else na">Comment: {{selectedAppointment.comment}}</li>
             <ng-template #na>
-                <li>Comment: N/A
-                <li>
+                <li>Comment: N/A</li>
             </ng-template>
         </ul>
 
@@ -36,16 +35,20 @@
 
         <div>
             <h2>Prescription</h2>
-            <input [(ngModel)]="searchText" placeholder="search text goes here">
+            <input type="text" [(ngModel)]="medicationName" placeholder="medication name" list="medication-list" (change)="medicationSelect(medicationName)">
+            <datalist id="medication-list">
+                <option *ngFor="let medication of medications" [value]="medication.name">{{medication.name}}</option>
+            </datalist>
+        <!--
             <ul>
-                <li *ngFor="let medication of medications | filterPipe: searchText" (click)="onSelectMedication(medication)">
+                <li *ngFor="let medication of medications | filterPipe: medicationName" (click)="onSelectMedication(medication)">
                     {{medication.name}}
                 </li>
             </ul>
-        
+        -->
             <input [(ngModel)]="dosage" placeholder="dosage">
-        
-            <button>Prescribe</button>
+
+            <button (click)="onPrescribe()">Prescribe</button>
         </div>
     </div>
 
