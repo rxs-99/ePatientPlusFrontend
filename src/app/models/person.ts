@@ -1,4 +1,4 @@
-import { Position } from './position';
+import { Position } from './Position';
 
 export class Person {
     constructor(
@@ -12,7 +12,7 @@ export class Person {
     getId(): number{
         return this.id;
 
-        
+
     } 
 
     getEmail(): string{
