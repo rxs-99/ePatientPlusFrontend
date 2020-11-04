@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   addPrescription: "http://localhost:8080/ePatient/prescription/add",
+  getAllPrescriptions: "http://localhost:8080/ePatient/prescription/all",
   getAllMedications: "http://localhost:8080/ePatient/medication/all",
   addMedication: "http://localhost:8080/ePatient/medication/add",
   updateMedication: "http://localhost:8080/ePatient/medication/update",

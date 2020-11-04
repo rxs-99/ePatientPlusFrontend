@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Person } from 'src/app/models/person';
 import { GetPatientService } from 'src/app/services/get-patient.service';
 
@@ -8,17 +9,18 @@ import { GetPatientService } from 'src/app/services/get-patient.service';
   styleUrls: ['./patient-info.component.css']
 })
 export class PatientInfoComponent implements OnInit {
-  person: Person = new Person(0, "", "", "", null);;
+  personId: number;
+  person: Person = new Person(0, "", "", "", null);
 
-  constructor(private personService: GetPatientService) { }
+  constructor(private personService: GetPatientService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.getPersonInfo();
+    this.personId = parseInt(this.route.snapshot.paramMap.get("id"));
+    this.getPersonInfo(this.personId);
   }
 
-  getPersonInfo(): void {
-    // TODO id should be based off of session data; this placeholder WILL need to be replaced before demo!
-    this.personService.getPerson(1).subscribe(
+  getPersonInfo(id: number): void {
+    this.personService.getPerson(id).subscribe(
       (person) => {
         this.person = person;
       },

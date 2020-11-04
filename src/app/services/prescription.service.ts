@@ -17,4 +17,8 @@ export class PrescriptionService {
 
     return this.http.post(environment.addPrescription,body, {headers:headers}) as Observable<boolean>;
   }
+
+  getAll(): Observable<Prescription[]> {
+    return this.http.get(environment.getAllPrescriptions) as Observable<Prescription[]>;
+  }
 }
