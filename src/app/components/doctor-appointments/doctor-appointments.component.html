@@ -1,4 +1,4 @@
-<div id="doctor_appointments" *ngIf="appointments_length">
+<div id="doctor_appointments" *ngIf="appointments_length; else noAppointments">
     <table id="doctor_pending_list">
         <thead>
             <tr>
@@ -53,3 +53,11 @@
     </div>
 
 </div>
+
+<ng-template #noAppointments>
+    <div>
+        No more appointments! YAY!
+    </div>
+</ng-template>
+
+<button (click)="onRefresh()">Refresh</button>

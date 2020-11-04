@@ -80,5 +80,7 @@ export class DoctorMedicationComponent implements OnInit {
     )[0];
   }
 
-  
+  onRefresh(): void{
+    this.ngOnInit();
+  }
 }
