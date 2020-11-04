@@ -1,35 +1,23 @@
-import { OnInit } from '@angular/core';
+import { ThrowStmt } from '@angular/compiler';
 import { Person } from './person';
 
-export class Appointment {
-    id: number;
-    comment: string;
-    date: Date;
-    doctor: Person;
-    patient: Person;
-    status: string
+export class Appointment{
 
-    getId(): number {
-        return this.id;
+    public id:number;
+    public patient:Person;
+    public doctor:Person;
+    public date:Date;
+    public status:String;
+    public comment:String;
+
+    constructor(id:number,  patient:Person, doctor:Person, date:Date, status:String, comment:String)
+    {
+        this.id = id;
+        this.patient = patient;
+        this.doctor = doctor;
+        this.date = date;
+        this.status = status;
+        this.comment = comment;
     }
 
-    getComment(): string {
-        return this.comment;
-    }
-
-    getDate(): Date {
-        return new Date(this.date);
-    }
-
-    getDoctor(): Person {
-        return this.doctor;
-    }
-
-    getPatient(): Person {
-        return this.patient;
-    }
-
-    getStatus(): string {
-        return this.status;
-    }
 }
