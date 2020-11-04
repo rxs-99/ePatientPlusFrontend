@@ -2,15 +2,17 @@ import { Position } from './position';
 
 export class Person {
     constructor(
-        private id: number,
-        private email: string,
-        private name: string,
-        private phone: string,
-        private position: Position
+        public id: number,
+        public email: string,
+        public name: string,
+        public phone: string,
+        public position: Position
     ) {}
 
     getId(): number{
         return this.id;
+
+        
     } 
 
     getEmail(): string{
