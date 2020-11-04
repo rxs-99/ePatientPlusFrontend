@@ -1,1 +1,36 @@
-<p>doctor-home works!</p>
+<!DOCTYPE html>
+<!-- This is the login page.  -->
+<html>
+
+<body>
+    <div id="doctor_header_wrapper">
+        <header id="doctor_header">
+            <img src="../../../assets/images/logo/draft_logo.svg" alt="ePatient Logo" id="doctor_header_logo" />
+        </header>
+        <div id="doctor_main_body_wrapper">
+            <div id="doctor_options">
+                <ul>
+                    <li *ngFor="let option of options" (click)="onSelect(option)">{{option}}</li>
+                </ul>
+            </div>
+
+            <div id="doctor_view">
+                <div *ngIf=medicationsVisibility>
+                    <app-doctor-medication></app-doctor-medication>
+                </div>
+                <div *ngIf=appointmentsVisibility>
+                    <app-doctor-appointments></app-doctor-appointments>
+                </div>
+            </div>
+        </div>
+        <footer id="doctor_footer">
+            <ul id="doctor_footer_credits">
+                <li>©ePatient 2020</li>
+                <li>Revature: Project 2</li>
+                <li>Project created by: ...</li>
+            </ul>
+        </footer>
+    </div>
+</body>
+
+</html>

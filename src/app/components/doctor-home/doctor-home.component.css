@@ -1,0 +1,72 @@
+#doctor_header_wrapper {
+    display: flex;
+    flex-direction: column;
+  
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Header */
+  
+  #doctor_header {
+    height: 150px;
+    width: 100%;
+    
+    background-image: url("../../../assets/images/textures/rough_diagonal.png");
+  }
+  
+  #doctor_header_logo {
+      height: 100px;
+      width: 350px;
+      padding-top: 20px;
+  }
+  
+  /* Footer */
+  
+  #doctor_footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    height: 100px;
+    width: 100%;
+    
+    background-image: url("../../../assets/images/textures/rough_diagonal.png");
+  
+    font-family: "Barlow", sans-serif;
+  }
+  
+  #doctor_footer_credits {
+    margin-bottom: 10px;
+    margin-right: 10px;
+  
+    text-align: right;
+    list-style: none;
+  }
+  
+  /* login box */
+  
+  #doctor_main_body_wrapper {
+    flex-grow: 1;
+  
+    position: relative;
+    z-index: 1;
+  
+    display: flex;
+
+    width: 100%;
+  
+    background-color: #FFFFFF;
+  
+    font-family: "Barlow";
+  
+    box-shadow: 0 0 60px #555555;
+  }
+
+  #doctor_options{
+    width: 20%;
+    background-color: aquamarine;
+  }
+
+  #doctor_view{
+    width: 70%;
+  }
