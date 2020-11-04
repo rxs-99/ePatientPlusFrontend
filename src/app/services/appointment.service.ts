@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Appointment } from '../models/appointment';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -17,14 +18,14 @@ export class AppointmentService {
    **************************************/
 
   getAll(): Observable<Appointment[]>{
-    return this.httpClient.get("http://localhost:8080/ePatient/appointment/status/pending") as Observable<Appointment[]>;
+    return this.httpClient.get(environment.getAllAppointments) as Observable<Appointment[]>;
   }
 
   update(appointment: Appointment): Observable<boolean>{
     let headers: HttpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
     let body = JSON.stringify(appointment);
 
-    return this.httpClient.post("http://localhost:8080/ePatient/appointment/update",body, {headers:headers}) as Observable<boolean>;
+    return this.httpClient.post(environment.updateAppointment,body, {headers:headers}) as Observable<boolean>;
   }
 
   /****************************************
