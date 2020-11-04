@@ -44,4 +44,19 @@
         <td>{{app.comment}}</td>
     </tr>
 </table>
+
+<table *ngIf="showPatients">
+    <tr>
+        <th>Patient ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone #</th>
+    </tr>
+    <tr *ngFor="let pat of allPatients; let i=index;">
+        <td>{{pat.id}}</td>
+        <td>{{pat.name}}</td>
+        <td>{{pat.email}}</td>
+        <td>{{pat.phone}}</td>
+    </tr>
+</table>
 </div>

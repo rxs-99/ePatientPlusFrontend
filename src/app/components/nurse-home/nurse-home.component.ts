@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Appointment } from 'src/app/models/appointment';
+import { Person } from 'src/app/models/person';
 import { AppointmentService } from 'src/app/services/appointment.service';
+import {GetPatientService} from 'src/app/services/get-patient.service'
 
 @Component({
   selector: 'app-nurse-home',
@@ -11,16 +13,18 @@ import { AppointmentService } from 'src/app/services/appointment.service';
 })
 export class NurseHomeComponent implements OnInit {
 
-  constructor(private appointmentService:AppointmentService) { }
+  constructor(private appointmentService:AppointmentService, private patientService:GetPatientService) { }
 
   ngOnInit(): void {
     this.getAllAppointments()
-   // this.getPendingAppointments()
+    this.getAllPatients()
   }
 
   appointments:Appointment[] = [];
 
   allAppointments:Appointment[] = [];
+
+  allPatients:Person[] = [];
 
 
   showAllAppointments:boolean = false;
@@ -65,7 +69,7 @@ export class NurseHomeComponent implements OnInit {
 
     let tempId:number = this.appointments[index].id; 
     this.appointments[index].status = "approved"
-    this.updateAppointmentLocally(tempId, "approved")
+    this.updateAppointmentStatusLocally(tempId, "approved")
     this.appointmentService.updateAppointment(this.appointments[index]).subscribe(()=>{
       console.log(this.appointments[index])
       this.appointments.splice(index, 1)
@@ -78,23 +82,16 @@ export class NurseHomeComponent implements OnInit {
 
     let tempId:number = this.appointments[index].id; 
     this.appointments[index].status= "denied"
-    this.updateAppointmentLocally(tempId, "denied")
+    this.updateAppointmentStatusLocally(tempId, "denied")
     this.appointmentService.updateAppointment(this.appointments[index]).subscribe(()=>{
       console.log(this.appointments[index])
       this.appointments.splice(index, 1)
     });
   }
 
-  getPendingAppointments(): void {
-    this.appointmentService.getAllPendingAppointments().subscribe(
-     
-      (data) => {
-        console.log(data)
-        this.appointments = data});
 
-  }
 
-  updateAppointmentLocally(id:number, status:string){
+  updateAppointmentStatusLocally(id:number, status:string){
     this.allAppointments.forEach(e => {
       if(e.id == id)
       {
@@ -111,6 +108,17 @@ export class NurseHomeComponent implements OnInit {
         this.allAppointments = data
         this.appointments = this.allAppointments.filter((v, i, a) => v.status === "pending")
       
+      });
+
+  }
+
+
+  getAllPatients(): void {
+    this.patientService.getAllPatients().subscribe(
+     
+      (data) => {
+        console.log(data)
+        this.allPatients = data;
       });
 
   }
