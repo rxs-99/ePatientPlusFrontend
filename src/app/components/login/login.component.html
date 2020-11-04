@@ -1,21 +1,15 @@
 <div id="login_page_wrapper">
     <header id="login_header">
-      <img src="../assets/images/logo/draft_logo.png" alt="ePatient Logo" id="login_logo" />
+      <img src="../assets/images/logo/draft_logo.svg" alt="ePatient Logo" id="login_logo" />
     </header>
     <article id="login_body">
-      
-      <div id="login_message">
-        <p>
-          This is sample text.
-        </p>
-      </div>
       <div id="login_form_pane">
-        <!--<form action="/??" method="post" id="login_form">-->
-            <input [(ngModel)]="login.username" placeholder="Username" />
-            <input type="password" [(ngModel)]="login.password" placeholder="Password" />
-            <input type="submit" (click)="submitCreds()"/>
-            <p id="incorrect_credentials_message" *ngIf="invalid">Incorrect login information</p>
-        <!--</form> -->
+        <form (ngSubmit)="submitCreds()">
+          <input [(ngModel)]="login.username" placeholder="Username" name="username"/><br/>
+          <input type="password" [(ngModel)]="login.password" placeholder="Password" name="password"/><br/>
+          <input type="submit" name="submit" value="Login"/><br/>
+        </form>
+        <p id="incorrect_credentials_message" *ngIf="invalid">Incorrect login information</p>
       </div>
     </article>
     <footer id="login_footer">
