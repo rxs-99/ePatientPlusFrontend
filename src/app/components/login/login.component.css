@@ -11,13 +11,14 @@
 #login_header {
   height: 150px;
   width: 100%;
-  
-  background-image: url("../../../assets/images/logo/draft_logo.png");
+
+  background-image: url("../../../assets/images/textures/rough_diagonal.png");
 }
 
 #login_logo {
-  position: absolute;
-  z-index: 10;
+   height: 100px;
+      width: 350px;
+      padding-top: 20px;
 }
 
 /* Footer */
@@ -72,7 +73,7 @@
   background-color: #E9E9E9;
 }
 
-#login_message {
+/*#login_message {
   font-size: 1.5em;
 }
 
@@ -105,4 +106,12 @@
   font-size: 1.5em;
 
   background-color: #CC7777;
+}*/
+
+input {
+  margin-bottom: 8px;
+}
+
+#incorrect_credentials_message {
+  color:red;
 }
