@@ -9,7 +9,14 @@ export const environment = {
   addMedication: "http://localhost:8080/ePatient/medication/add",
   updateMedication: "http://localhost:8080/ePatient/medication/update",
   getAllAppointments: "http://localhost:8080/ePatient/appointment/status/pending",
-  updateAppointment: "http://localhost:8080/ePatient/appointment/update"
+  updateAppointment: "http://localhost:8080/ePatient/appointment/update",
+  createAppointment: "http://localhost:8080/ePatient/appointment/new",
+  getPerson:"http://localhost:8080/ePatient/person/get/",
+  getDoctors:"http://localhost:8080/ePatient/person/get_doctors",
+  getAllPatients: "http://localhost:8080/ePatient/person/get/patients",
+  editPerson: "http://localhost:8080/ePatient/person/edit",
+  
+
 };
 
 /*

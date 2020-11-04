@@ -36,12 +36,13 @@ export class AppointmentService {
     let headers:HttpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
     let body = JSON.stringify(appointment) 
 
-    return this.httpClient.post("http://localhost:8080/ePatient/appointment/new", body, {headers:headers});
+    return this.httpClient.post(environment.createAppointment, body, {headers:headers});
   }
 
   getAllAppointments() : Observable<Appointment[]> {
 
-    return this.httpClient.get("http://localhost:8080/ePatient/appointment/all") as Observable<Appointment[]>;
+    return this.getAll() 
+    //this.httpClient.get("http://localhost:8080/ePatient/appointment/all") as Observable<Appointment[]>;
   }
 
   getAllPendingAppointments() : Observable<Appointment[]> {
@@ -52,10 +53,12 @@ export class AppointmentService {
   updateAppointment(appointment:Appointment){
 
     //We must manually construct our HTTP header and Body.
-    let headers:HttpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
-    let body = JSON.stringify(appointment) 
+   // let headers:HttpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+   // let body = JSON.stringify(appointment) 
 
-    return this.httpClient.post("http://localhost:8080/ePatient/appointment/update", body, {headers:headers});
+    return this.update(appointment)
+    
+    //this.httpClient.post("http://localhost:8080/ePatient/appointment/update", body, {headers:headers});
   }
 
 }
