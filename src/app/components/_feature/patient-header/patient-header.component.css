@@ -1,0 +1,10 @@
+#patient_header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../../../assets/images/textures/rough_diagonal.png");
+}
+
+#header_epatient_logo {
+  max-height: 64px;
+}

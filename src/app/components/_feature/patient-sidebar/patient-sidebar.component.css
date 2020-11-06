@@ -1,0 +1,29 @@
+#patient_sidebar_wrapper {
+  width: 250px;
+  height: 100%;
+
+  padding-top: 10px;
+
+  background-color: #888888;
+}
+
+#patient_sidebar_list {
+  list-style: none;
+}
+
+#patient_sidebar_list > a {
+  text-decoration: none;
+  color: #EEEEEE;
+}
+
+#patient_sidebar_list > a > div {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+}
+
+#patient_sidebar_list > a > div:hover {
+  background-color: #AAAAAA;
+}

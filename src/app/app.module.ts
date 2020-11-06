@@ -18,6 +18,9 @@ import { LoginComponent } from './components/login/login.component';
 import { DoctorAppointmentsComponent } from './components/doctor-appointments/doctor-appointments.component';
 import { FilterPipe } from './pipes/filter-pipe.pipe';
 import { DoctorMedicationComponent } from './components/doctor-medication/doctor-medication.component';
+import { PatientHeaderComponent } from './components/_feature/patient-header/patient-header.component';
+import { PatientSidebarComponent } from './components/_feature/patient-sidebar/patient-sidebar.component';
+import { PatientFooterComponent } from './components/_feature/patient-footer/patient-footer.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { DoctorMedicationComponent } from './components/doctor-medication/doctor
     PrescriptionsInfoComponent,
     PatientProfileEditComponent,
     AppointmentSubmissionComponent,
-    LoginComponent
+    LoginComponent,
+    PatientHeaderComponent,
+    PatientSidebarComponent,
+    PatientFooterComponent
   ],
   imports: [
     BrowserModule,
