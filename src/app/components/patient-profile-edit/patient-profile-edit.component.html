@@ -1,8 +1,15 @@
-<div id="mi_form_pane">
-  <form id="mi_form" [formGroup]="personEditForm" (ngSubmit)="editPersonInfo(personEditForm.value)">
-    <input type="text" name="name" formControlName="name" value="{{person.name}}"/>
-    <input type="email" name="email" formControlName="email" value={{person.email}} />
-    <input type="text" name="phone" formControlName="phone" value={{person.phone}} />
-    <button type="submit">Submit Edits</button>
-  </form>
-</div>
+<app-patient-header></app-patient-header>
+<article id="patient_main_wrapper">
+  <app-patient-sidebar></app-patient-sidebar>
+  <div id="patient_content">
+    <div id="mi_form_pane">
+      <form id="mi_form" [formGroup]="personEditForm" (ngSubmit)="editPersonInfo(personEditForm.value)">
+        <input type="text" name="name" formControlName="name" value="{{person.name}}"/>
+        <input type="email" name="email" formControlName="email" value={{person.email}} />
+        <input type="text" name="phone" formControlName="phone" value={{person.phone}} />
+        <button type="submit">Submit Edits</button>
+      </form>
+    </div>
+  </div>
+</article>
+<app-patient-footer></app-patient-footer>

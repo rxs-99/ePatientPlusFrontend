@@ -1,0 +1,30 @@
+:host {
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+}
+
+#patient_main_wrapper {
+  flex-grow: 1;
+
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  background-color: #FFFFFF;
+
+  font-family: "Barlow";
+
+  box-shadow: 0 0 60px #555555;
+}
+
+#patient_content {
+  width: 100%;
+
+  padding-left: 20px;
+  padding-top: 20px;
+}
