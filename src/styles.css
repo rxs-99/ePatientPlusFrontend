@@ -57,6 +57,13 @@ html, body {
   align-items: center;
 }
 
+#mi_form > h1 {
+  margin-top: 0;
+  margin-bottom: 5px;
+
+  font-size: 2em;
+}
+
 #mi_form > input {
   margin-bottom: 10px;
   border-style: none;
@@ -65,6 +72,20 @@ html, body {
   padding-right: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
+
+  font-size: 1.5em;
+}
+
+#mi_form > textarea {
+  margin-bottom: 10px;
+  border-style: none;
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  resize: none;
 
   font-size: 1.5em;
 }
@@ -80,4 +101,9 @@ html, body {
   font-size: 1.5em;
 
   background-color: #CC7777;
+}
+
+#mi_form > button:hover {
+  cursor: pointer;
+  background-color: #AA4444;
 }
