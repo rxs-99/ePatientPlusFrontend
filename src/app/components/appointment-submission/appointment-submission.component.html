@@ -2,16 +2,25 @@
 <article id="patient_main_wrapper">
   <app-patient-sidebar></app-patient-sidebar>
   <div id="patient_content">
-    <p>appointment-submission works!</p>
-    <form [formGroup]="apptCreateForm" (ngSubmit)="createAppointment(apptCreateForm.value)">
-      <select name="appt_doctor" formControlName="doctor" *ngFor="let doctor of doctorList">
-        <option value="{{doctor.id}}">{{doctor.name}}</option>
-      </select>
-      <input type="date" name="appt_date" formControlName="date" >
-      <input type="time" name="appt_date" formControlName="time" >
-      <textarea name="appt_comments" formControlName="comments" cols="30" rows="10"></textarea>
-      <button>Submit Appointment Request</button>
-    </form>
+    <div id="mi_form_pane">
+      <form id="mi_form" [formGroup]="apptCreateForm" (ngSubmit)="createAppointment(apptCreateForm.value)">
+        <h1>Create an Appointment</h1>
+        <label for="appt_doctor">Select a Doctor</label>
+        <select name="appt_doctor" formControlName="doctor" *ngFor="let doctor of doctorList">
+          <option value="{{doctor.id}}">{{doctor.name}}</option>
+        </select>
+
+        <label for="appt_date">Date</label>
+        <input type="date" name="appt_date" formControlName="date" >
+        
+        <label for="appt_time">Time</label>
+        <input type="time" name="appt_date" formControlName="time" >
+        
+        <textarea name="appt_comments" formControlName="comments" cols="30" rows="10" placeholder="If you have any more information, enter it here."></textarea>
+        
+        <button>Submit Appointment Request</button>
+      </form>
+    </div>
   </div>
 </article>
 <app-patient-footer></app-patient-footer>
