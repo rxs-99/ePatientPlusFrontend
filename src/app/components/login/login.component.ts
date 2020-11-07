@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       (data) => {
         this.person = data.person;
         this.authService.getDecodedToken(data.token);
-        this.authService.setSession(data.token);
+        this.authService.setSession(data.person.id, data.token);
         console.log(this.authService.isLoggedIn());
       });
     console.log("before passed");

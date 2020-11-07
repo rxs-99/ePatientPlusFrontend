@@ -20,9 +20,14 @@ export class AuthService {
   	return this.httpClient.post(environment.login, body, {headers:headers}) as Observable<User>;
   }
 
-  setSession(token: string): void{
+  setSession(id: number, token: string): void{
+    localStorage.setItem("person_id", id.toString());
     localStorage.setItem("token",token);
     localStorage.setItem("expiresAt",this.getDecodedToken(token)["exp"]);
+  }
+
+  getId(): number {
+    return parseInt(localStorage.getItem("person_id"));
   }
 
   getDecodedToken(token: string): JSON {

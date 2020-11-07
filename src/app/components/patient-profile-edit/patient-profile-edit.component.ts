@@ -44,7 +44,7 @@ export class PatientProfileEditComponent implements OnInit {
     this.person.email = personData.email;
     this.person.phone = personData.phone;
     
-    this.personService.setPerson(1, this.person).subscribe(
+    this.personService.setPerson(this.personId, this.person).subscribe(
       () => {
         console.dir(personData);
       },
