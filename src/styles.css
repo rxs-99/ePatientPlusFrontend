@@ -107,3 +107,41 @@ html, body {
   cursor: pointer;
   background-color: #AA4444;
 }
+
+/* Response Bubble Styles */
+
+#response_bubble_container {
+  position: fixed;
+  left: 10px;
+  top: 10px;
+  
+  display: flex;
+
+  flex-direction: row;
+  justify-content: center;
+
+  border-radius: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  box-shadow: #333333 0 0 5px;
+}
+
+.response_bubble_error {
+  background-color: #CC3333;
+}
+
+.response_bubble_success {
+  background-color: #33CC33;
+}
+
+#response_bubble_message {
+  font-family: "Barlow", sans-serif;
+  margin-right: 5px;
+}
+
+#response_bubble_close {
+  cursor: pointer;
+}

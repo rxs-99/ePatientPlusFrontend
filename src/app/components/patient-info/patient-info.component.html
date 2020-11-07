@@ -2,8 +2,9 @@
 <article id="patient_main_wrapper">
   <app-patient-sidebar></app-patient-sidebar>
   <div id="patient_content">
-    <div *ngIf="responseBubble" id="response_bubble_container">
-      <p>{{responseBubble.message}}</p>
+    <div *ngIf="responseBubble" id="response_bubble_container" [ngClass]="responseBubble && responseBubble.isError ? 'response_bubble_error':'response_bubble_success'">
+      <p id="response_bubble_message">{{responseBubble.message}}</p>
+      <img src="../../../assets/images/icons/close_icon.png" alt="close" id="response_bubble_close" (click)="clearResponseBubble()" />
     </div>
     <p>{{person.id}}</p>
     <p>{{person.name}}</p>

@@ -81,4 +81,9 @@ export class PatientProfileEditComponent implements OnInit {
       }
     )
   }
+
+  clearResponseBubble() {
+    this.responseBubbleService.setBubble(null);
+    this.responseBubble = null;
+  }
 }

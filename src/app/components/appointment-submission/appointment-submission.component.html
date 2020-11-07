@@ -2,19 +2,24 @@
 <article id="patient_main_wrapper">
   <app-patient-sidebar></app-patient-sidebar>
   <div id="patient_content">
+    <div *ngIf="responseBubble" id="response_bubble_container" [ngClass]="responseBubble && responseBubble.isError ? 'response_bubble_error':'response_bubble_success'">
+      <p id="response_bubble_message">{{responseBubble.message}}</p>
+      <img src="../../../assets/images/icons/close_icon.png" alt="close" id="response_bubble_close" (click)="clearResponseBubble()" />
+    </div>
     <div id="mi_form_pane">
       <form id="mi_form" [formGroup]="apptCreateForm" (ngSubmit)="createAppointment(apptCreateForm.value)">
         <h1>Create an Appointment</h1>
         <label for="appt_doctor">Select a Doctor</label>
-        <select name="appt_doctor" formControlName="doctor" *ngFor="let doctor of doctorList">
+        <select name="appt_doctor" formControlName="doctor" *ngFor="let doctor of doctorList" required>
+          <option value="">...</option>
           <option value="{{doctor.id}}">{{doctor.name}}</option>
         </select>
 
         <label for="appt_date">Date</label>
-        <input type="date" name="appt_date" formControlName="date" >
+        <input type="date" name="appt_date" formControlName="date" required />
         
         <label for="appt_time">Time</label>
-        <input type="time" name="appt_date" formControlName="time" >
+        <input type="time" name="appt_date" formControlName="time" required />
         
         <textarea name="appt_comments" formControlName="comments" cols="30" rows="10" placeholder="If you have any more information, enter it here."></textarea>
         
