@@ -1,62 +1,79 @@
-<div style="flex-direction: row;  display: flex;">
+<app-patient-header></app-patient-header>
+<article id="patient_main_wrapper">
+    <div style="flex-direction: row;  display: flex;">
+  <app-nurse-sidebar (myEvent) = "handleChoice($event)"></app-nurse-sidebar>
+  <div id="patient_content">
+
+    <table *ngIf="showPending">
+        <tr>
+            <th>Patient</th>
+            <th>Doctor</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Comment</th>
+            <th>Approve/Deny</th>
+        </tr>
+        <tr *ngFor="let app of appointments; let i=index;">
+            <td>{{app.patient.name}}</td>
+            <td>{{app.doctor.name}}</td>
+            <td>{{app.date | date}}</td>
+            <td>{{app.status}}</td>
+            <td>{{app.comment}}</td>
+            <td>
+                <button (click)="approve(i)">Approve</button>
+                <button (click)="deny(i)">Deny</button>
+            </td>
+        </tr>
+    </table>
+    
+    <table *ngIf="showAllAppointments">
+        <tr>
+            <th>Patient</th>
+            <th>Doctor</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Comment</th>
+        </tr>
+        <tr *ngFor="let app of allAppointments; let i=index;">
+            <td>{{app.patient.name}}</td>
+            <td>{{app.doctor.name}}</td>
+            <td>{{app.date | date}}</td>
+            <td>{{app.status}}</td>
+            <td>{{app.comment}}</td>
+        </tr>
+    </table>
+    
+    <table *ngIf="showPatients">
+        <tr>
+            <th>Patient ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone #</th>
+        </tr>
+        <tr *ngFor="let pat of allPatients; let i=index;">
+            <td>{{pat.id}}</td>
+            <td>{{pat.name}}</td>
+            <td>{{pat.email}}</td>
+            <td>{{pat.phone}}</td>
+        </tr>
+    </table>
+</div>
+  </div>
+</article>
+<app-patient-footer></app-patient-footer>
+
+
+
+
+<!--
+
 
     <div style="flex-direction: column; display: flex;">
     <button (click)="handleChoice('pending')">View Pending Appointments</button>
     <button (click)="handleChoice('all')">View All Appointments</button>
     <button (click)="handleChoice('patients')">View All Patients</button>
 
-</div>
-<table *ngIf="showPending">
-    <tr>
-        <th>Patient</th>
-        <th>Doctor</th>
-        <th>Date</th>
-        <th>Status</th>
-        <th>Comment</th>
-        <th>Approve/Deny</th>
-    </tr>
-    <tr *ngFor="let app of appointments; let i=index;">
-        <td>{{app.patient.name}}</td>
-        <td>{{app.doctor.name}}</td>
-        <td>{{app.date | date}}</td>
-        <td>{{app.status}}</td>
-        <td>{{app.comment}}</td>
-        <td>
-            <button (click)="approve(i)">Approve</button>
-            <button (click)="deny(i)">Deny</button>
-        </td>
-    </tr>
-</table>
 
-<table *ngIf="showAllAppointments">
-    <tr>
-        <th>Patient</th>
-        <th>Doctor</th>
-        <th>Date</th>
-        <th>Status</th>
-        <th>Comment</th>
-    </tr>
-    <tr *ngFor="let app of allAppointments; let i=index;">
-        <td>{{app.patient.name}}</td>
-        <td>{{app.doctor.name}}</td>
-        <td>{{app.date | date}}</td>
-        <td>{{app.status}}</td>
-        <td>{{app.comment}}</td>
-    </tr>
-</table>
 
-<table *ngIf="showPatients">
-    <tr>
-        <th>Patient ID</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone #</th>
-    </tr>
-    <tr *ngFor="let pat of allPatients; let i=index;">
-        <td>{{pat.id}}</td>
-        <td>{{pat.name}}</td>
-        <td>{{pat.email}}</td>
-        <td>{{pat.phone}}</td>
-    </tr>
-</table>
 </div>
+--->

@@ -24,6 +24,7 @@ import { PatientFooterComponent } from './components/_feature/patient-footer/pat
 import { httpInterceptorProviders } from './HTTPInterceptors/interceptor';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { NotAuthorizedComponent } from './components/not-authorized/not-authorized.component';
+import { NurseSidebarComponent } from './components/_feature/nurse-sidebar/nurse-sidebar.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { NotAuthorizedComponent } from './components/not-authorized/not-authoriz
     PatientSidebarComponent,
     PatientFooterComponent,
     PageNotFoundComponent,
-    NotAuthorizedComponent
+    NotAuthorizedComponent,
+    NurseSidebarComponent
   ],
   imports: [
     BrowserModule,
