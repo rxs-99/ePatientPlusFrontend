@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Person } from 'src/app/person';
 import { Login } from '../../login';
 import { Router } from '@angular/router';
-import { LoginService } from "../../services/login.service";
+import { AuthService } from "../../services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -21,16 +21,21 @@ export class LoginComponent implements OnInit {
 
   person: Person;
 
-  constructor(private loginService: LoginService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   submitCreds(): void {
-    this.loginService.login(this.login).subscribe(
-      (data) => {this.person = data});
+    this.authService.login(this.login).subscribe(
+      (data) => {
+        this.person = data.person;
+        this.authService.getDecodedToken(data.token);
+        this.authService.setSession(data.token);
+        console.log(this.authService.isLoggedIn());
+      });
     console.log("before passed");
-    this.loginService.login(this.login).toPromise().then(x => this.finishLogin());
+    this.authService.login(this.login).toPromise().then(x => this.finishLogin());
   }
 
   finishLogin(): void{

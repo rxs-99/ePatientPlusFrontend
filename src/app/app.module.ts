@@ -21,6 +21,9 @@ import { DoctorMedicationComponent } from './components/doctor-medication/doctor
 import { PatientHeaderComponent } from './components/_feature/patient-header/patient-header.component';
 import { PatientSidebarComponent } from './components/_feature/patient-sidebar/patient-sidebar.component';
 import { PatientFooterComponent } from './components/_feature/patient-footer/patient-footer.component';
+import { httpInterceptorProviders } from './HTTPInterceptors/interceptor';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { NotAuthorizedComponent } from './components/not-authorized/not-authorized.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,9 @@ import { PatientFooterComponent } from './components/_feature/patient-footer/pat
     LoginComponent,
     PatientHeaderComponent,
     PatientSidebarComponent,
-    PatientFooterComponent
+    PatientFooterComponent,
+    PageNotFoundComponent,
+    NotAuthorizedComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +52,9 @@ import { PatientFooterComponent } from './components/_feature/patient-footer/pat
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

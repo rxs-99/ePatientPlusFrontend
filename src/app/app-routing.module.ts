@@ -8,45 +8,69 @@ import { PatientInfoComponent } from './components/patient-info/patient-info.com
 import { PatientProfileEditComponent } from './components/patient-profile-edit/patient-profile-edit.component';
 import { AppointmentSubmissionComponent } from './components/appointment-submission/appointment-submission.component';
 import { PrescriptionsInfoComponent } from './components/prescriptions-info/prescriptions-info.component';
+import { DoctorGuard } from './guards/doctor.guard';
+import { PatientGuard } from './guards/patient.guard';
+import { NurseGuard } from './guards/nurse.guard';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { NotAuthorizedComponent } from './components/not-authorized/not-authorized.component';
 
 const routes: Routes = [
 	{
 		path: "patient",
-		component: PatientHomeComponent
+		component: PatientHomeComponent,
+		canActivate: [PatientGuard]
 	},
 	{
 		path: "nurse",
-		component: NurseHomeComponent
+		component: NurseHomeComponent,
+		canActivate: [NurseGuard]
 	},
 	{
 		path: "doctor",
-		component: DoctorHomeComponent
+		component: DoctorHomeComponent,
+		canActivate: [DoctorGuard]
 	},
 	{
 		path: "profile/:id",
-		component: PatientInfoComponent
+		component: PatientInfoComponent,
+		canActivate: [PatientGuard]
 	},
 	{
 		path: "edit_profile/:id",
-		component: PatientProfileEditComponent
+		component: PatientProfileEditComponent,
+		canActivate: [PatientGuard]
 	},
 	{
 		path: "create_appt",
-		component: AppointmentSubmissionComponent
+		component: AppointmentSubmissionComponent,
+		canActivate: [PatientGuard]
 	},
 	{
 		path: "prescriptions/:id",
-		component: PrescriptionsInfoComponent
+		component: PrescriptionsInfoComponent,
+		canActivate: [PatientGuard]
 	},
 	{
-		path: "",
+		path: "login",
 		component: LoginComponent
 	},
-  { path: '', redirectTo: '/login', pathMatch: 'full' }
+	{
+		path: '',
+		redirectTo: '/login',
+		pathMatch: 'full'
+	},
+	{
+		path: "notAuthorized",
+		component: NotAuthorizedComponent
+	},
+	{
+		path: "**",
+		component: PageNotFoundComponent
+	}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+	imports: [RouterModule.forRoot(routes)],
+	exports: [RouterModule]
 })
 export class AppRoutingModule { }
