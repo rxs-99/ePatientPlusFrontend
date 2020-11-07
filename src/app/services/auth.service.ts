@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Person } from '../person';
 import { Login } from '../login';
 import { environment } from 'src/environments/environment';
-import { User } from '../models/User';
+import { User } from '../models/user';
 import jwtDecode from 'jwt-decode';
 import { Router } from '@angular/router';
 
