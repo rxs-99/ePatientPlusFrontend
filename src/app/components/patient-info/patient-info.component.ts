@@ -36,4 +36,9 @@ export class PatientInfoComponent implements OnInit {
       }
     )
   }
+
+  clearResponseBubble() {
+    this.responseBubbleService.setBubble(null);
+    this.responseBubble = null;
+  }
 }

@@ -58,6 +58,16 @@ export class AppointmentSubmissionComponent implements OnInit {
 
   createAppointment(apptData: any): void {
     // Validation
+    if(!apptData.doctor) {
+      this.responseBubble = new ResponseBubble(true, "Please select a doctor.");
+      return;
+    } else if(!apptData.date) {
+      this.responseBubble = new ResponseBubble(true, "Please enter a valid date.");
+      return;
+    } else if(!apptData.time) {
+      this.responseBubble = new ResponseBubble(true, "Please enter a valid time.");
+      return;
+    }
 
     let appt: Appointment = new Appointment(0, this.applicant, this.getDoctorById(parseInt(apptData.doctor)), apptData.date, "pending", apptData.comments)
     this.apptService.createAppointment(appt).subscribe(
@@ -79,5 +89,10 @@ export class AppointmentSubmissionComponent implements OnInit {
     }
 
     return null;
+  }
+
+  clearResponseBubble() {
+    this.responseBubbleService.setBubble(null);
+    this.responseBubble = null;
   }
 }
