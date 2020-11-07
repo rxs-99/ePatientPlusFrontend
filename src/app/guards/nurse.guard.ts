@@ -11,18 +11,20 @@ export class NurseGuard implements CanActivate {
   constructor(
     private router: Router,
     private authService: AuthService
-  ) {}
-  
+  ) { }
+
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    
-      if(this.authService.isLoggedIn()){
-        if(this.authService.getDecodedToken(localStorage.getItem("token"))["role"] === "nurse"){
-          return true;
-        }
-      }
 
+    if (this.authService.isLoggedIn()) {
+      if (this.authService.getDecodedToken(localStorage.getItem("token"))["role"] === "nurse") {
+        return true;
+      }
+    }
+
+    this.router.navigateByUrl("/notAuthorized");
+    return false;
   }
-  
+
 }
