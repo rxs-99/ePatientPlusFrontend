@@ -2,6 +2,9 @@
 <article id="patient_main_wrapper">
   <app-patient-sidebar></app-patient-sidebar>
   <div id="patient_content">
+    <div *ngIf="responseBubble" id="response_bubble_container">
+      <p>{{responseBubble.message}}</p>
+    </div>
     <p>{{person.id}}</p>
     <p>{{person.name}}</p>
     <p>{{person.email}}</p>

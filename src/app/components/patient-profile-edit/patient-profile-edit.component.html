@@ -2,6 +2,9 @@
 <article id="patient_main_wrapper">
   <app-patient-sidebar></app-patient-sidebar>
   <div id="patient_content">
+    <div *ngIf="responseBubble" id="response_bubble_container">
+      <p>{{responseBubble.message}}</p>
+    </div>
     <div id="mi_form_pane">
       <form id="mi_form" [formGroup]="personEditForm" (ngSubmit)="editPersonInfo(personEditForm.value)">
         <h1>Edit Your Profile</h1>
