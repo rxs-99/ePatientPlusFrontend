@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-doctor-home',
@@ -17,7 +18,7 @@ export class DoctorHomeComponent implements OnInit {
   appointmentsVisibility: boolean;
   medicationsVisibility: boolean;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -25,13 +26,17 @@ export class DoctorHomeComponent implements OnInit {
   onSelect(selected_option: string): void {
     this.selected_option = selected_option;
 
-    if(selected_option === 'Appointments'){
+    if (selected_option === 'Appointments') {
       this.appointmentsVisibility = true;
       this.medicationsVisibility = false;
     } else {
       this.medicationsVisibility = true;
       this.appointmentsVisibility = false;
     }
+  }
+
+  logout(): void {
+    this.authService.logOut();
   }
 
 }
