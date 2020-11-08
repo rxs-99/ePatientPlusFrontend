@@ -25,6 +25,8 @@ import { httpInterceptorProviders } from './HTTPInterceptors/interceptor';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { NotAuthorizedComponent } from './components/not-authorized/not-authorized.component';
 import { NurseSidebarComponent } from './components/_feature/nurse-sidebar/nurse-sidebar.component';
+import { AuthTokenExpiredComponent } from './components/auth-token-expired/auth-token-expired.component';
+import { AuthTokenNotFoundComponent } from './components/auth-token-not-found/auth-token-not-found.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { NurseSidebarComponent } from './components/_feature/nurse-sidebar/nurse
     PatientFooterComponent,
     PageNotFoundComponent,
     NotAuthorizedComponent,
-    NurseSidebarComponent
+    NurseSidebarComponent,
+    AuthTokenExpiredComponent,
+    AuthTokenNotFoundComponent
   ],
   imports: [
     BrowserModule,
