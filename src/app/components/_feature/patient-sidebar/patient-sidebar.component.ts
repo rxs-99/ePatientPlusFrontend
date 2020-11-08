@@ -9,10 +9,13 @@ import { AuthService } from 'src/app/services/auth.service';
 export class PatientSidebarComponent implements OnInit {
   person_id: string;
 
-  constructor(authService: AuthService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.person_id = localStorage.getItem("person_id");
   }
 
+  logout(): void {
+    this.authService.logOut();
+  }
 }

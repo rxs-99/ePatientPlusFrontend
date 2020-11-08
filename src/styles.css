@@ -17,6 +17,16 @@ html, body {
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+/* Header styles */
+h1 {
+  margin: 0;
+  margin-bottom: 10px;
+  padding: 0;
+
+  font-family: "Barlow", sans-serif;
+  font-size: 3em;
+}
+
 /* Form styles */
 
 #mi_form_body {
@@ -106,4 +116,77 @@ html, body {
 #mi_form > button:hover {
   cursor: pointer;
   background-color: #AA4444;
+}
+
+/* Response Bubble Styles */
+
+#response_bubble_container {
+  position: fixed;
+  left: 10px;
+  top: 10px;
+  
+  display: flex;
+
+  flex-direction: row;
+  justify-content: center;
+
+  border-radius: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  box-shadow: #333333 0 0 5px;
+}
+
+.response_bubble_error {
+  background-color: #CC3333;
+}
+
+.response_bubble_success {
+  background-color: #33CC33;
+}
+
+#response_bubble_message {
+  font-family: "Barlow", sans-serif;
+  margin-right: 5px;
+}
+
+#response_bubble_close {
+  cursor: pointer;
+}
+
+/* Table Styles */
+
+.mi_table {
+  font-family: "Barlow", sans-serif;
+  border-collapse: collapse;
+}
+
+.mi_table thead {
+  text-align: center;
+  color: #EEEEEE;
+}
+
+.mi_table th, .mi_table td {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.mi_table th:nth-child(even) {
+  background-color: #444444;
+}
+
+.mi_table th:nth-child(odd) {
+  background-color: #555555;
+}
+
+.mi_table tr:nth-child(even) {
+  background-color: #DDDDDD;
+}
+
+.mi_table tr:nth-child(odd) {
+  background-color: #EEEEEE;
 }

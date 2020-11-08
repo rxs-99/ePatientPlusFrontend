@@ -29,3 +29,7 @@
   padding-right: 20px;
   padding-top: 20px;
 }
+
+#patient_content > p {
+  font-size: 1.5em;
+}
