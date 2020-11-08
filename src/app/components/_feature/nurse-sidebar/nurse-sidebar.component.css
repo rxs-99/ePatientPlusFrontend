@@ -1,9 +1,6 @@
 #nurse_sidebar_wrapper {
-    width: 250px;
+    width: 225px;
     height: 100%;
-  
-    padding-top: 10px;
-  
     background-color: #888888;
   }
   
@@ -14,6 +11,8 @@
   #nurse_sidebar_list > a {
     text-decoration: none;
     color: #EEEEEE;
+    align-items: center;
+    justify-items: center;
   }
   
   #nurse_sidebar_list > a > div {

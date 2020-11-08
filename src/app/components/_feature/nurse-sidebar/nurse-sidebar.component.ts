@@ -11,11 +11,17 @@ export class NurseSidebarComponent implements OnInit {
   myEvent = new EventEmitter<string>();
 
   callParent(choice:string) {
-    console.log(choice)
+   
     this.myEvent.emit(choice);
   }
 
-  constructor(authService: AuthService) { }
+
+  constructor(private authService: AuthService) { }
+
+  logout()
+  {
+    this.authService.logOut();
+  }
 
   ngOnInit(): void {
     this.person_id = localStorage.getItem("person_id");

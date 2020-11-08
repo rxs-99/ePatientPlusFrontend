@@ -26,40 +26,53 @@ export class NurseHomeComponent implements OnInit {
 
   allPatients:Person[] = [];
 
+  allCancelableAppointments:Appointment[] = [];
+
+  showModal:boolean = false;
+
 
   showAllAppointments:boolean = false;
   showPending:boolean = true;
   showPatients:boolean = false;
+  showCancelApproved:boolean = false;
+
+  showMustHaveReason:boolean = false
   
+  chosen:number = -1;
+  reason:string;
+
+
+  toggleModal(index: number)
+  {
+    this.showModal = !this.showModal;
+    this.chosen = index;
+  }
+
+  cancelApp()
+  {
+    if(this.reason === undefined || this.reason === '')
+    {
+      this.showMustHaveReason = true;
+      return;
+    }
+
+
+    this.allCancelableAppointments[this.chosen].comment += ("  Cancelled for: " + this.reason)
+    this.cancel(this.chosen)
+
+    this.reason = undefined;
+    this.showMustHaveReason = false;
+
+    this.chosen = -1;
+    this.showModal = false;
+  }
 
   handleChoice(choice:String)
   {
-    switch(choice)
-    {
-      case 'all':
-        {
-          this.showAllAppointments = true;
-          this.showPending = false;
-          this.showPatients = false;
-          break;
-        }
-
-      case 'pending':
-        {
-          this.showAllAppointments = false;
-          this.showPending = true;         
-          this.showPatients = false;
-          break;
-        }
-        
-      case 'patients':
-        {
-          this.showAllAppointments = false;
-          this.showPending = false;         
-          this.showPatients = true;
-          break;
-        }
-    }
+    this.showAllAppointments = choice === 'all'
+    this.showPending = choice === 'pending'
+    this.showPatients = choice === 'patients'
+    this.showCancelApproved = choice === 'approved'
   }
 
 
@@ -68,11 +81,19 @@ export class NurseHomeComponent implements OnInit {
     console.log("approve" + index);
 
     let tempId:number = this.appointments[index].id; 
-    this.appointments[index].status = "approved"
     this.updateAppointmentStatusLocally(tempId, "approved")
     this.appointmentService.updateAppointment(this.appointments[index]).subscribe(()=>{
       console.log(this.appointments[index])
-      this.appointments.splice(index, 1)
+     
+      let date:Date = new Date(this.appointments[index].date)
+      let currentDate:Date = new Date()
+
+      if(date > currentDate)
+        this.allCancelableAppointments.push(this.appointments[index])
+
+        this.appointments.splice(index, 1)
+      
+      
     });
   }
   
@@ -81,7 +102,6 @@ export class NurseHomeComponent implements OnInit {
     console.log("deny" + index);
 
     let tempId:number = this.appointments[index].id; 
-    this.appointments[index].status= "denied"
     this.updateAppointmentStatusLocally(tempId, "denied")
     this.appointmentService.updateAppointment(this.appointments[index]).subscribe(()=>{
       console.log(this.appointments[index])
@@ -89,10 +109,36 @@ export class NurseHomeComponent implements OnInit {
     });
   }
 
+  cancel(index:number) : void
+  {
+    console.log("cancel" + index);
+
+    let tempId:number = this.allCancelableAppointments[index].id 
+    this.updateAppointmentStatusLocally(tempId, "cancelled")
+    this.appointmentService.updateAppointment(this.allCancelableAppointments[index]).subscribe(()=>{
+      console.log(this.appointments[index])
+      this.allCancelableAppointments.splice(index, 1)
+    });
+  }
+
 
 
   updateAppointmentStatusLocally(id:number, status:string){
     this.allAppointments.forEach(e => {
+      if(e.id == id)
+      {
+        e.status = status;
+      }
+    })
+
+    this.appointments.forEach(e => {
+      if(e.id == id)
+      {
+        e.status = status;
+      }
+    })
+
+    this.allCancelableAppointments.forEach(e => {
       if(e.id == id)
       {
         e.status = status;
@@ -107,6 +153,13 @@ export class NurseHomeComponent implements OnInit {
         console.log(data)
         this.allAppointments = data
         this.appointments = this.allAppointments.filter((v, i, a) => v.status === "pending")
+
+        let current:Date = new Date();
+
+        this.allCancelableAppointments = this.allAppointments.filter((v, i, a) => {
+          console.log(current + ":" + v.date + ':' +new Date(v.date))
+          v.status === "approved" && new Date(v.date) > current
+        })
       
       });
 
