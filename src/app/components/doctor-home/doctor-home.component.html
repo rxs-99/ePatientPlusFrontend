@@ -11,7 +11,7 @@
         <div id="doctor_main_body_wrapper">
             <div id="doctor_options">
                 <ul>
-                    <li *ngFor="let option of options" (click)="onSelect(option)">{{option}}</li>
+                    <li *ngFor="let option of options" (click)="onSelect(option)" [class.selected]="option === selected_option">{{option}}</li>
                 </ul>
             </div>
 

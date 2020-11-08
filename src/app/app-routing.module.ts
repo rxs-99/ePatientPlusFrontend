@@ -13,6 +13,8 @@ import { PatientGuard } from './guards/patient.guard';
 import { NurseGuard } from './guards/nurse.guard';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { NotAuthorizedComponent } from './components/not-authorized/not-authorized.component';
+import { AuthTokenNotFoundComponent } from './components/auth-token-not-found/auth-token-not-found.component';
+import { AuthTokenExpiredComponent } from './components/auth-token-expired/auth-token-expired.component';
 
 const routes: Routes = [
 	{
@@ -62,6 +64,14 @@ const routes: Routes = [
 	{
 		path: "notAuthorized",
 		component: NotAuthorizedComponent
+	},
+	{
+		path: "authTokenNotFound",
+		component: AuthTokenNotFoundComponent
+	},
+	{
+		path: "authTokenExpired",
+		component: AuthTokenExpiredComponent
 	},
 	{
 		path: "**",
