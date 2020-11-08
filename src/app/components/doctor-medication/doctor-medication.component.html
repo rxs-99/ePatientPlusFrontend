@@ -15,29 +15,48 @@
         </tbody>
     </table>
 
+    <div class="white"></div>
+    <div class="horizontal_line"></div>
+    <div class="white"></div>
+
     <div id="add-medication">
-        <h3>Add Medication</h3>
+        <h2>Add Medication</h2>
         <form [formGroup]="newMedicationForm" (ngSubmit)="add()">
             <input type="text" placeholder="name" formControlName="name">
             <input type="text" placeholder="supplier" formControlName="supplier">
             <input type="number" placeholder="amount" formControlName="amountStored">
             <button type="submit" [disabled]="!newMedicationForm.valid">Submit</button>
         </form>
+        <p class="feedback" *ngIf="addMedicationFeedbackFlag">Successfully submitted!</p>
+        <p class="feedback" *ngIf="errorFlag">Error adding to the database! Please try again!</p>
 
     </div>
 
+    <div class="white"></div>
+    <div class="horizontal_line"></div>
+    <div class="white"></div>
+
     <div id="request-restock">
-        <h3>Request restock</h3>
+        <h2>Request restock</h2>
         <form [formGroup]="stockMedicationForm" (ngSubmit)="restock()">
-            <input type="text" placeholder="name" list="medication-list" formControlName="name" [(ngModel)]="restockSelectedMedicationName" (change)="restock_select(restockSelectedMedicationName)">
+            <input type="text" placeholder="name" list="medication-list" formControlName="name"
+                [(ngModel)]="restockSelectedMedicationName" (change)="restock_select(restockSelectedMedicationName)">
             <datalist id="medication-list">
                 <option *ngFor="let medication of medications" [value]="medication.name">{{medication.name}}</option>
             </datalist>
             <input type="number" placeholder="amount" formControlName="amountStored">
             <input type="submit">
         </form>
+        <p class="feedback" *ngIf="updateMedicationFeedbackFlag">Successfully submitted!</p>
+        <p class="feedback" *ngIf="updateErrorFlag">Error updating database! Please try again!</p>
     </div>
 
 </div>
 
-<button (click)="onRefresh()">Refresh</button>
+<p *ngIf="pleaseWaitFlag">
+    Loading ... Please wait!
+</p>
+
+<div class="buttons">
+    <button (click)="onRefresh()" id="refresh-button">Refresh</button>
+</div>

@@ -1,0 +1,81 @@
+.horizontal_line {
+    display: block;
+    border-top: 1px solid black;
+}
+
+.white {
+    display: block;
+    background-color: white;
+    height: 10px;
+}
+
+h2 {
+    margin: 0px;
+}
+
+input[type=text],input[type=number] {
+    margin: 5px;
+    padding: 5px;
+    height: 25px;
+    font-size: 1.05em;
+}
+
+#add-medication {
+    background-color: rgb(216, 216, 216);
+    padding: 10px;
+}
+
+#add-medication > form {
+    display: flex;
+    flex-direction: column;
+}
+
+#add-medication > form > button {
+    margin: 5px;
+    padding: 5px;
+    height: 35px;
+    font-size: 1.05em;
+    background-color: rgb(141, 238, 141);
+}
+
+#add-medication > form > button:hover {
+    background-color: rgb(86, 248, 121);
+}
+
+#request-restock {
+    background-color: rgb(216, 216, 216);
+    padding: 10px;
+}
+
+#request-restock > form {
+    display: flex;
+    flex-direction: row;
+}
+
+#request-restock > form > input[type=submit] {
+    margin: 5px 0px;
+    font-size: 1.05em;
+    background-color: rgb(141, 238, 141);
+}
+
+#request-restock > form > input[type=submit]:hover {
+    background-color: rgb(86, 248, 121);
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px;
+}
+
+#refresh-button {
+    background-color: rgb(141, 238, 141);
+}
+
+#refresh-button:hover {
+    background-color: rgb(86, 248, 121);
+}
+
+.feedback {
+    color: red;
+}

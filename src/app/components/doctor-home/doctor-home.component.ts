@@ -11,6 +11,7 @@ export class DoctorHomeComponent implements OnInit {
   options: string[] = [
     "Appointments",
     "Medications",
+    "Log Out"
   ];
 
   selected_option: string;
@@ -29,9 +30,11 @@ export class DoctorHomeComponent implements OnInit {
     if (selected_option === 'Appointments') {
       this.appointmentsVisibility = true;
       this.medicationsVisibility = false;
-    } else {
+    } else if (selected_option === 'Medications') {
       this.medicationsVisibility = true;
       this.appointmentsVisibility = false;
+    } else if (selected_option === 'Log Out') {
+      this.logout();
     }
   }
 
