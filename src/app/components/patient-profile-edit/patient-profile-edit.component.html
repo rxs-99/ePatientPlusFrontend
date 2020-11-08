@@ -2,23 +2,25 @@
 <article id="patient_main_wrapper">
   <app-patient-sidebar></app-patient-sidebar>
   <div id="patient_content">
-    <div *ngIf="responseBubble" id="response_bubble_container" [ngClass]="responseBubble && responseBubble.isError ? 'response_bubble_error':'response_bubble_success'">
+    <div *ngIf="responseBubble" id="response_bubble_container"
+      [ngClass]="responseBubble && responseBubble.isError ? 'response_bubble_error':'response_bubble_success'">
       <p id="response_bubble_message">{{responseBubble.message}}</p>
-      <img src="../../../assets/images/icons/close_icon.png" alt="close" id="response_bubble_close" (click)="clearResponseBubble()" />
+      <img src="../../../assets/images/icons/close_icon.png" alt="close" id="response_bubble_close"
+        (click)="clearResponseBubble()" />
     </div>
     <div id="mi_form_pane">
       <form id="mi_form" [formGroup]="personEditForm" (ngSubmit)="editPersonInfo(personEditForm.value)">
         <h1>Edit Your Profile</h1>
-        
+
         <label for="name">Legal Name</label>
-        <input type="text" name="name" formControlName="name" value="{{person.name}}"/>
-        
+        <input type="text" name="name" formControlName="name" value="{{person.name}}" />
+
         <label for="email">Email Address</label>
         <input type="email" name="email" formControlName="email" value={{person.email}} />
-        
+
         <label for="phone">Phone Number</label>
         <input type="text" name="phone" formControlName="phone" value={{person.phone}} />
-        
+
         <button type="submit">Submit Edits</button>
       </form>
     </div>
