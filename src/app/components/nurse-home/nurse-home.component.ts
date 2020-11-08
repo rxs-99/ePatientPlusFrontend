@@ -201,7 +201,7 @@ export class NurseHomeComponent implements OnInit {
 
         this.allCancelableAppointments = this.allAppointments.filter((v, i, a) => {
           console.log(current + ":" + v.date + ':' +new Date(v.date))
-          v.status === "approved" && new Date(v.date) > current
+         return (v.status === "approved" && new Date(v.date) > current)
         })
       
       });

@@ -92,16 +92,19 @@
 
                 <!-- Modal content -->
                 <div class="modal-content">
+
+                    <div style="text-align: center;">
                     <span (click)='toggleModal(-1)' class="close">&times;</span>
                     <p>Are you sure that you want to cancel the appointment?</p>
                     <form>
-                        <label for="reason">Reason for cancellation</label>
+                        <p style="margin-top: 10px;">Reason for cancellation</p>
                         <input type="text" required name="reason" [(ngModel)]='reason' />
                     </form>
 
                     <p *ngIf="showMustHaveReason">You must input a reason for cancellation.</p>
 
-                    <button (click)='cancelApp()'>Cancel Appointment</button>
+                    <button (click)='cancelApp()' style="margin-top: 10px;">Cancel Appointment</button>
+                </div>
                 </div>
 
             </div>
