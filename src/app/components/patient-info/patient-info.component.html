@@ -6,10 +6,31 @@
       <p id="response_bubble_message">{{responseBubble.message}}</p>
       <img src="../../../assets/images/icons/close_icon.png" alt="close" id="response_bubble_close" (click)="clearResponseBubble()" />
     </div>
-    <p>{{person.id}}</p>
+    <h1>Your Profile</h1>
     <p>{{person.name}}</p>
     <p>{{person.email}}</p>
     <p>{{person.phone}}</p>
+    <hr />
+    <h2>Your Appointments</h2>
+    <table class="mi_table">
+      <thead>
+        <th>Date</th>
+        <th>Doctor</th>
+        <th>Status</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let appt of personAppointments">
+          <td>{{appt.date | date}}</td>
+          <td>{{appt.doctor.name}}</td>
+          <td>{{appt.status}}</td>
+          <td class="no_bkgd">
+            <div class="appt_cancel_button" *ngIf="appt.status === 'pending'" (click)="cancelAppointment(appt.id)">
+              Cancel
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </article>
 <app-patient-footer></app-patient-footer>

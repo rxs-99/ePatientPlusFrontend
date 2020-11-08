@@ -29,3 +29,16 @@
   padding-right: 20px;
   padding-top: 20px;
 }
+
+#patient_content > p {
+  font-size: 1.5em;
+}
+
+.appt_cancel_button {
+  padding: 3px;
+  
+  background-color: #CC5555;
+  color: #EEEEEE;
+  
+  cursor: pointer;
+}
