@@ -27,6 +27,15 @@ h1 {
   font-size: 3em;
 }
 
+h2 {
+  margin: 0;
+  margin-bottom: 10px;
+  padding: 0;
+
+  font-family: "Barlow", sans-serif;
+  font-size: 2em;
+}
+
 /* Form styles */
 
 #mi_form_body {
@@ -189,4 +198,8 @@ h1 {
 
 .mi_table tr:nth-child(odd) {
   background-color: #EEEEEE;
+}
+
+.mi_table td.no_bkgd {
+  background-color: transparent;
 }

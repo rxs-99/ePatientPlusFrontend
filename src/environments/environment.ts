@@ -9,7 +9,7 @@ export const environment = {
   getAllMedications: "http://localhost:8080/ePatient/medication/all",
   addMedication: "http://localhost:8080/ePatient/medication/add",
   updateMedication: "http://localhost:8080/ePatient/medication/update",
-  getAllAppointments: "http://localhost:8080/ePatient/appointment/status/pending",
+  getAllAppointments: "http://localhost:8080/ePatient/appointment/all",
   updateAppointment: "http://localhost:8080/ePatient/appointment/update",
   createAppointment: "http://localhost:8080/ePatient/appointment/new",
   getPerson:"http://localhost:8080/ePatient/person/get/",
