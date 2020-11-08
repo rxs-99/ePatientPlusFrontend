@@ -13,6 +13,9 @@ import { PrescriptionService } from 'src/app/services/prescription.service';
 })
 export class DoctorAppointmentsComponent implements OnInit {
 
+  emptyAppointmentFlag: boolean = false;
+  pleaseWaitFlag: boolean = false;
+
   thead: string[] = ["ID", "Name", "Date", "Status", "Comment"];
 
   appointments: Appointment[];
@@ -28,41 +31,57 @@ export class DoctorAppointmentsComponent implements OnInit {
   constructor(private appointmentService: AppointmentService, private medicationService: MedicationService, private prescriptionService: PrescriptionService) { }
 
   ngOnInit(): void {
+    this.emptyAppointmentFlag = false;
     this.getAllAppointments();
   }
 
-  getAllAppointments(): void{
+  getAllAppointments(): void {
     this.appointmentService.getAll().subscribe(
       data => {
-        this.appointments = data;
+        this.appointments = data.filter(
+          (element: Appointment) => {
+            if (element.status === "approved" && element.doctor.id === +localStorage.getItem("person_id")) {
+              return element;
+            }
+          }
+        );
+        this.pleaseWaitFlag = false;
+
         this.appointments_length = this.appointments.length;
-        console.log(this.appointments);
+        if(this.appointments_length === 0){
+          this.emptyAppointmentFlag = true;
+        }
       },
-      () => {console.log("Uh-Oh, Couldn't fetch appointments! Please try again!")}
-    )
+      () => { console.log("Uh-Oh, Couldn't fetch appointments! Please try again!") }
+    );
+    this.pleaseWaitFlag = true;
   }
 
-  onSelect(selectedAppointment: Appointment): void{
+  onSelect(selectedAppointment: Appointment): void {
     this.selectedAppointment = selectedAppointment;
     console.log("selected appointment: ");
     console.log(this.selectedAppointment);
     this.getAllMedications();
   }
 
-  removeSelected(): void{   
+  removeSelected(): void {
 
-    for(let i: number = 0; i < this.appointments_length; i++){
-      if(this.appointments[i].id === this.selectedAppointment.id){
-        this.appointments.splice(i,1);
+    for (let i: number = 0; i < this.appointments_length; i++) {
+      if (this.appointments[i].id === this.selectedAppointment.id) {
+        this.appointments.splice(i, 1);
         this.appointments_length--;
-        
+
+        if(this.appointments_length === 0){
+          this.emptyAppointmentFlag = true;
+        }
+
         break;
       }
     }
     this.selectedAppointment = null;
   }
 
-  onClickDeny(): void{
+  onClickDeny(): void {
     this.selectedAppointment.status = "denied";
     this.appointmentService.update(this.selectedAppointment).subscribe(val => console.log(val));
     this.removeSelected();
@@ -70,7 +89,7 @@ export class DoctorAppointmentsComponent implements OnInit {
     console.log(this.selectedAppointment);
   }
 
-  getAllMedications(): void{
+  getAllMedications(): void {
     this.medicationService.getAll().subscribe(
       data => {
         this.medications = data;
@@ -78,22 +97,22 @@ export class DoctorAppointmentsComponent implements OnInit {
         console.log("get all medications: ");
         console.log(this.medications);
       },
-      () => {console.log("Uh-Oh!, Couldn't fectch medications! Please try again!")}
+      () => { console.log("Uh-Oh!, Couldn't fectch medications! Please try again!") }
     )
   }
 
-  medicationSelect(name: string): void{
+  medicationSelect(name: string): void {
     this.selectedMedication = this.medications.filter(data => data.name.includes(name))[0];
     console.log("medication selected for prescription: ")
     console.log(this.selectedMedication);
   }
 
-  onPrescribe(): void{
+  onPrescribe(): void {
     console.log("prescribe: ");
-    this.selectedAppointment.status = "approved";
+    this.selectedAppointment.status = "completed";
     this.selectedMedication.amountStored -= this.dosage;
 
-    let prescription: Prescription = new Prescription(1,this.selectedMedication,this.selectedAppointment.patient, this.selectedAppointment.doctor, this.dosage);
+    let prescription: Prescription = new Prescription(1, this.selectedMedication, this.selectedAppointment.patient, this.selectedAppointment.doctor, this.dosage);
 
     console.log(this.selectedAppointment);
     this.appointmentService.update(this.selectedAppointment).subscribe(val => console.log(val));
@@ -106,7 +125,7 @@ export class DoctorAppointmentsComponent implements OnInit {
     console.log(prescription);
   }
 
-  onRefresh(): void{
+  onRefresh(): void {
     this.ngOnInit();
   }
 
