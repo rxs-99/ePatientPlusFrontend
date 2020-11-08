@@ -18,7 +18,6 @@ export class JWTInterceptor implements HttpInterceptor {
 
     const token = localStorage.getItem("token");
     if (token && !request.url.includes("login")) {
-      console.log(request.url.includes("login")+"   "+this.authService.isLoggedIn());
       if (this.authService.isLoggedIn()) {
         const cloned = request.clone({
           headers: request.headers.set("Authorization", "Bearer " + token)
