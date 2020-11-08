@@ -11,7 +11,8 @@ import { AuthService } from "../../services/auth.service";
 })
 export class LoginComponent implements OnInit {
 
-  invalid = false;
+  invalid: boolean = false;
+  wait_flag: boolean = false;
 
   login: Login = {
     id: 0,
@@ -30,23 +31,28 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.login).subscribe(
       (data) => {
         this.person = data.person;
-        this.authService.getDecodedToken(data.token);
-        this.authService.setSession(data.person.id, data.token);
-        console.log(this.authService.isLoggedIn());
+        if (!(this.person == null)) {
+          this.authService.setSession(data.person.id, data.token);
+        }
+        this.wait_flag = false;
+        this.finishLogin();
       });
     console.log("before passed");
-    this.authService.login(this.login).toPromise().then(x => this.finishLogin());
+
+    this.wait_flag = true;
+    this.invalid = false;
+    //this.authService.login(this.login).toPromise().then(x => this.finishLogin());
   }
 
-  finishLogin(): void{
+  finishLogin(): void {
     console.log("after passed");
-    if(this.person==null) {
+    if (this.person == null) {
       this.invalid = true;
-    } else if(this.person.position.id === 1) {
+    } else if (this.person.position.id === 1) {
       this.router.navigate(['/patient'])
-    } else if(this.person.position.id === 2) {
+    } else if (this.person.position.id === 2) {
       this.router.navigate(['/nurse'])
-    } else if(this.person.position.id === 3) {
+    } else if (this.person.position.id === 3) {
       this.router.navigate(['/doctor'])
     }
   }
