@@ -10,6 +10,7 @@ import { ResponseBubbleService } from 'src/app/services/response-bubble.service'
 import * as EmailValidator from 'email-validator';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-nurse-home',
   templateUrl: './nurse-home.component.html',
@@ -18,18 +19,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class NurseHomeComponent implements OnInit {
 
   constructor(private appointmentService:AppointmentService, private patientService:GetPatientService, private responseBubbleService: ResponseBubbleService, 
-    private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router) { }
+    private formBuilder: FormBuilder, private authService:AuthService) { }
 
   ngOnInit(): void {
     this.getAllAppointments()
     this.getAllPatients()
 
-    // code below is from patient-profile-edit
+    // code below involving forms is from patient-profile-edit credit to Matt
 
     this.responseBubble = this.responseBubbleService.getBubble();
     this.responseBubbleService.setBubble(null);
 
-    this.personId = parseInt(this.route.snapshot.paramMap.get("id"));
+    this.personId = this.authService.getId();
     this.personEditForm = this.formBuilder.group({
       "name": "",
       "email": "",
@@ -70,6 +71,8 @@ export class NurseHomeComponent implements OnInit {
   showProfile:boolean = false;
 
   showMustHaveReason:boolean = false;
+
+  showChange:boolean = false;
   
   chosen:number = -1;
   reason:string;
@@ -112,6 +115,7 @@ export class NurseHomeComponent implements OnInit {
     this.showPatients = choice === 'patients'
     this.showCancelApproved = choice === 'approved'
     this.showProfile = choice === 'profile'
+    this.showChange = false
   }
 
 
@@ -215,7 +219,7 @@ export class NurseHomeComponent implements OnInit {
 
   }
 
-//Code below is from patient-profile-edit.component
+ // code below is from patient-profile-edit credit to Matt
 
   responseBubble: ResponseBubble;
 
@@ -247,12 +251,15 @@ export class NurseHomeComponent implements OnInit {
     this.person.name = personData.name;
     this.person.email = personData.email;
     this.person.phone = personData.phone;
+
+    this.showChange = false;
     
     this.patientService.setPerson(this.personId, this.person).subscribe(
       () => {
        // this.router.navigate(['/profile/' + this.personId])
 
         this.responseBubbleService.setBubble(new ResponseBubble(false, "Your profile was successfully changed."));
+        this.showChange = true;
       },
       () => {
         console.log("An error has occurred when retrieving Person info.");

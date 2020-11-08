@@ -5,6 +5,7 @@
         <div id="patient_content">
 
             <table *ngIf="showPending">
+                <caption><h2>Pending Appointments</h2></caption>
                 <tr>
                     <th>Patient</th>
                     <th>Doctor</th>
@@ -27,6 +28,7 @@
             </table>
 
             <table *ngIf="showAllAppointments">
+                <caption><h2>All Appointments</h2></caption>
                 <tr>
                     <th>Patient</th>
                     <th>Doctor</th>
@@ -44,6 +46,7 @@
             </table>
 
             <table *ngIf="showPatients">
+                <caption><h2>All Patients</h2></caption>
                 <tr>
                     <th>Patient ID</th>
                     <th>Name</th>
@@ -60,6 +63,7 @@
 
 
             <table *ngIf="showCancelApproved">
+                <caption><h2>Cancellable Appointments</h2></caption>
                 <tr>
                     <th>Patient</th>
                     <th>Doctor</th>
@@ -103,10 +107,14 @@
             </div>
 
             <!--This empty table fixes issues i had with centering my divs below without a table they will not be centered-->
-            <table></table>
-
+            
+            <table *ngIf='showProfile'>
+                <caption><h2>My Profile</h2></caption>
+            </table>
             <div *ngIf='showProfile' id="outer">
+                
                 <div id="inner">
+                    
                     <div *ngIf="responseBubble" id="response_bubble_container"
                         [ngClass]="responseBubble && responseBubble.isError ? 'response_bubble_error':'response_bubble_success'">
                         <p id="response_bubble_message">{{responseBubble.message}}</p>
@@ -116,7 +124,7 @@
                     <div id="mi_form_pane">
                         <form id="mi_form" [formGroup]="personEditForm"
                             (ngSubmit)="editPersonInfo(personEditForm.value)">
-                            <h1>Edit Your Profile</h1>
+                           
 
                             <label for="name">Legal Name</label>
                             <input type="text" name="name" formControlName="name" value="{{person.name}}" />
@@ -127,8 +135,10 @@
                             <label for="phone">Phone Number</label>
                             <input type="text" name="phone" formControlName="phone" value={{person.phone}} />
 
-                            <button type="submit">Submit Edits</button>
+                            <button type="submit">Save Changes</button>
+
                         </form>
+                        <p *ngIf='showChange' style="text-align: center;">Changes were successfully saved.</p>
                     </div>
                 </div>
             </div>
