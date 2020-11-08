@@ -1,107 +1,141 @@
 <app-patient-header></app-patient-header>
 <article id="patient_main_wrapper">
     <div style="flex-direction: row;  display: flex;">
-  <app-nurse-sidebar (myEvent) = "handleChoice($event)"></app-nurse-sidebar>
-  <div id="patient_content">
+        <app-nurse-sidebar (myEvent)="handleChoice($event)"></app-nurse-sidebar>
+        <div id="patient_content">
 
-    <table *ngIf="showPending">
-        <tr>
-            <th>Patient</th>
-            <th>Doctor</th>
-            <th>Date</th>
-            <th>Status</th>
-            <th>Comment</th>
-            <th>Choice</th>
-        </tr>
-        <tr *ngFor="let app of appointments; let i=index;">
-            <td>{{app.patient.name}}</td>
-            <td>{{app.doctor.name}}</td>
-            <td>{{app.date | date:'short'}}</td>
-            <td>{{app.status}}</td>
-            <td>{{app.comment}}</td>
-            <td>
-                <button (click)="approve(i)">Approve</button>
-                <button (click)="deny(i)">Deny</button>
-            </td>
-        </tr>
-    </table>
-    
-    <table *ngIf="showAllAppointments">
-        <tr>
-            <th>Patient</th>
-            <th>Doctor</th>
-            <th>Date</th>
-            <th>Status</th>
-            <th>Comment</th>
-        </tr>
-        <tr *ngFor="let app of allAppointments; let i=index;">
-            <td>{{app.patient.name}}</td>
-            <td>{{app.doctor.name}}</td>
-            <td>{{app.date | date:'short'}}</td>
-            <td>{{app.status}}</td>
-            <td>{{app.comment}}</td>
-        </tr>
-    </table>
-    
-    <table *ngIf="showPatients">
-        <tr>
-            <th>Patient ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone #</th>
-        </tr>
-        <tr *ngFor="let pat of allPatients; let i=index;">
-            <td>{{pat.id}}</td>
-            <td>{{pat.name}}</td>
-            <td>{{pat.email}}</td>
-            <td>{{pat.phone}}</td>
-        </tr>
-    </table>
+            <table *ngIf="showPending">
+                <tr>
+                    <th>Patient</th>
+                    <th>Doctor</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Comment</th>
+                    <th>Choice</th>
+                </tr>
+                <tr *ngFor="let app of appointments; let i=index;">
+                    <td>{{app.patient.name}}</td>
+                    <td>{{app.doctor.name}}</td>
+                    <td>{{app.date | date:'short'}}</td>
+                    <td>{{app.status}}</td>
+                    <td>{{app.comment}}</td>
+                    <td>
+                        <button (click)="approve(i)">Approve</button>
+                        <button (click)="deny(i)">Deny</button>
+                    </td>
+                </tr>
+            </table>
+
+            <table *ngIf="showAllAppointments">
+                <tr>
+                    <th>Patient</th>
+                    <th>Doctor</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Comment</th>
+                </tr>
+                <tr *ngFor="let app of allAppointments; let i=index;">
+                    <td>{{app.patient.name}}</td>
+                    <td>{{app.doctor.name}}</td>
+                    <td>{{app.date | date:'short'}}</td>
+                    <td>{{app.status}}</td>
+                    <td>{{app.comment}}</td>
+                </tr>
+            </table>
+
+            <table *ngIf="showPatients">
+                <tr>
+                    <th>Patient ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone #</th>
+                </tr>
+                <tr *ngFor="let pat of allPatients; let i=index;">
+                    <td>{{pat.id}}</td>
+                    <td>{{pat.name}}</td>
+                    <td>{{pat.email}}</td>
+                    <td>{{pat.phone}}</td>
+                </tr>
+            </table>
 
 
-    <table *ngIf="showCancelApproved">
-        <tr>
-            <th>Patient</th>
-            <th>Doctor</th>
-            <th>Date</th>
-            <th>Status</th>
-            <th>Comment</th>
-            <th>Choice</th>
-        </tr>
-        <tr *ngFor="let app of allCancelableAppointments; let i=index;">
-            <td>{{app.patient.name}}</td>
-            <td>{{app.doctor.name}}</td>
-            <td>{{app.date | date:'short'}}</td>
-            <td>{{app.status}}</td>
-            <td>{{app.comment}}</td>
-            <td>
-                <button (click)="toggleModal(i)">Cancel</button>
-            </td>
-        </tr>
-    </table>
+            <table *ngIf="showCancelApproved">
+                <tr>
+                    <th>Patient</th>
+                    <th>Doctor</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Comment</th>
+                    <th>Choice</th>
+                </tr>
+                <tr *ngFor="let app of allCancelableAppointments; let i=index;">
+                    <td>{{app.patient.name}}</td>
+                    <td>{{app.doctor.name}}</td>
+                    <td>{{app.date | date:'short'}}</td>
+                    <td>{{app.status}}</td>
+                    <td>{{app.comment}}</td>
+                    <td>
+                        <button (click)="toggleModal(i)">Cancel</button>
+                    </td>
+                </tr>
+            </table>
 
-    <div *ngIf="showModal" id="myModal" class="modal">
+           
 
-        <!-- Modal content -->
-        <div class="modal-content">
-          <span (click) ='toggleModal(-1)' class="close">&times;</span>
-          <p>Are you sure that you want to cancel the appointment?</p>
-          <form>
-              <label for="reason">Reason for cancellation</label>
-              <input type="text" required name="reason" [(ngModel)]='reason'/>
-          </form>
-        
-          <p *ngIf="showMustHaveReason">You must input a reason for cancellation.</p>
-    
-          <button (click)='cancelApp()'>Cancel Appointment</button>
+
+
+            <div *ngIf="showModal" id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span (click)='toggleModal(-1)' class="close">&times;</span>
+                    <p>Are you sure that you want to cancel the appointment?</p>
+                    <form>
+                        <label for="reason">Reason for cancellation</label>
+                        <input type="text" required name="reason" [(ngModel)]='reason' />
+                    </form>
+
+                    <p *ngIf="showMustHaveReason">You must input a reason for cancellation.</p>
+
+                    <button (click)='cancelApp()'>Cancel Appointment</button>
+                </div>
+
+            </div>
+
+             <!--This empty table fixes issues i had with centering my divs below without a table they will not be centered-->
+             <table></table>
+
+             <div *ngIf='showProfile' id="outer">
+                 <div id="inner">
+                    <div *ngIf="responseBubble" id="response_bubble_container" [ngClass]="responseBubble && responseBubble.isError ? 'response_bubble_error':'response_bubble_success'">
+                        <p id="response_bubble_message">{{responseBubble.message}}</p>
+                        <img src="../../../assets/images/icons/close_icon.png" alt="close" id="response_bubble_close" (click)="clearResponseBubble()" />
+                      </div>
+                      <div id="mi_form_pane">
+                        <form id="mi_form" [formGroup]="personEditForm" (ngSubmit)="editPersonInfo(personEditForm.value)">
+                          <h1>Edit Your Profile</h1>
+                          
+                          <label for="name">Legal Name</label>
+                          <input type="text" name="name" formControlName="name" value="{{person.name}}"/>
+                          
+                          <label for="email">Email Address</label>
+                          <input type="email" name="email" formControlName="email" value={{person.email}} />
+                          
+                          <label for="phone">Phone Number</label>
+                          <input type="text" name="phone" formControlName="phone" value={{person.phone}} />
+                          
+                          <button type="submit">Submit Edits</button>
+                        </form>
+                      </div>
+                 </div>
+             </div>
+
+
         </div>
-      
-      </div>
+    </div>
 
 
-   
-</div>
-  </div>
+
 </article>
 <app-patient-footer></app-patient-footer>
 

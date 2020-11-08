@@ -82,3 +82,12 @@ th, td {
     padding-right: 20px;
     padding-top: 20px;
   }
+
+
+  
+  #outer {
+
+    width:100%;
+    display: flex;
+    justify-content: center;
+  }
