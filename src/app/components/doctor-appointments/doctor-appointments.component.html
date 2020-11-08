@@ -1,4 +1,4 @@
-<div id="doctor_appointments" *ngIf="appointments_length; else noAppointments">
+<div id="doctor_appointments" *ngIf="appointments_length">
     <table id="doctor_pending_list">
         <thead>
             <tr>
@@ -35,11 +35,12 @@
 
         <div>
             <h2>Prescription</h2>
-            <input type="text" [(ngModel)]="medicationName" placeholder="medication name" list="medication-list" (change)="medicationSelect(medicationName)">
+            <input type="text" [(ngModel)]="medicationName" placeholder="medication name" list="medication-list"
+                (change)="medicationSelect(medicationName)">
             <datalist id="medication-list">
                 <option *ngFor="let medication of medications" [value]="medication.name">{{medication.name}}</option>
             </datalist>
-        <!--
+            <!--
             <ul>
                 <li *ngFor="let medication of medications | filterPipe: medicationName" (click)="onSelectMedication(medication)">
                     {{medication.name}}
@@ -54,10 +55,12 @@
 
 </div>
 
-<ng-template #noAppointments>
-    <div>
-        No more appointments! YAY!
-    </div>
-</ng-template>
+
+<p *ngIf="emptyAppointmentFlag">
+    No more appointments! YAY!
+</p>
+<p *ngIf="pleaseWaitFlag">
+    Loading ... Please wait!
+</p>
 
 <button (click)="onRefresh()">Refresh</button>

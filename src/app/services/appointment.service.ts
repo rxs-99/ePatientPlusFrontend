@@ -47,7 +47,7 @@ export class AppointmentService {
 
   getAllPendingAppointments() : Observable<Appointment[]> {
 
-    return this.httpClient.get("http://localhost:8080/ePatient/appointment/status/pending") as Observable<Appointment[]>;
+    return this.httpClient.get(environment.getPendingAppointments) as Observable<Appointment[]>;
   }
 
   updateAppointment(appointment:Appointment){
