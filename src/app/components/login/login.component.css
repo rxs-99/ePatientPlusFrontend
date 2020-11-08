@@ -112,6 +112,6 @@ input {
   margin-bottom: 8px;
 }
 
-#incorrect_credentials_message {
+#incorrect_credentials_message, #please_wait {
   color:red;
 }

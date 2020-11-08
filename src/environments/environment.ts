@@ -16,7 +16,8 @@ export const environment = {
   getDoctors:"http://localhost:8080/ePatient/person/get_doctors",
   getAllPatients: "http://localhost:8080/ePatient/person/get/patients",
   editPerson: "http://localhost:8080/ePatient/person/edit",
-  login: "http://localhost:8080/ePatient/login"
+  login: "http://localhost:8080/ePatient/login",
+  getPendingAppointments: "http://localhost:8080/ePatient/appointment/status/pending"
 };
 
 /*
