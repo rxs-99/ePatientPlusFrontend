@@ -1,0 +1,13 @@
+<div id="nurse_sidebar_wrapper">
+    <nav id="nurse_sidebar_list">
+
+        <a (click)="callParent('pending')"><div>View Pending Appointments</div></a>
+        <a (click)="callParent('all')"><div>View All Appointments</div></a>
+        <a (click)="callParent('approved')"><div>Cancel Approved Appointment</div></a>
+        <a (click)="callParent('patients')"><div>View All Patients</div></a>
+        <a (click)="callParent('profile')"><div>My Profile</div></a>
+        <a (click)="logout()"><div>Logout</div></a>
+
+     
+    </nav>
+  </div>
