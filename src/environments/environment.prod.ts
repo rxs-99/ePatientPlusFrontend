@@ -12,5 +12,6 @@ export const environment = {
   getDoctors:"http://3.23.98.155:9999/ePatient/person/get_doctors",
   getAllPatients: "http://3.23.98.155:9999/ePatient/person/get/patients",
   editPerson: "http://3.23.98.155:9999/ePatient/person/edit",
-  login: "http://3.23.98.155:9999/ePatient/login"
+  login: "http://3.23.98.155:9999/ePatient/login",
+  getPendingAppointments: "http://3.23.98.155:9999/ePatient/appointment/status/pending"
 };
