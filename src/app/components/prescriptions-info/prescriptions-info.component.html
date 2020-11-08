@@ -2,14 +2,15 @@
 <article id="patient_main_wrapper">
   <app-patient-sidebar></app-patient-sidebar>
   <div id="patient_content">
-    <table>
+    <h1>Your Prescriptions</h1>
+    <table class="mi_table">
       <thead>
         <th>Medication</th>
         <th>Dosage</th>
         <th>Prescribed By</th>
       </thead>
-      <tbody *ngFor="let prescription of patientPrescriptions">
-        <tr>
+      <tbody>
+        <tr *ngFor="let prescription of patientPrescriptions">
           <td>{{prescription.medication.name}}</td>
           <td>{{prescription.dosage}}</td>
           <td>{{prescription.doctor.name}}</td>
