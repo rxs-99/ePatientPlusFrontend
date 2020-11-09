@@ -62,16 +62,13 @@ li {
 
 #appointment_prescription_wrapper > button {
     background-color: rgb(141, 238, 141);
+    height: 35px;
+    margin: 5px 5px 10px 5px;
     font-size: 1.1em;
 }
 
 #appointment_prescription_wrapper > button:hover {
     background-color: rgb(114, 241, 114);
-}
-
-#appointment_prescription_wrapper > button {
-    height: 25px;
-    margin: 5px 5px 10px 5px
 }
 
 #refresh_button {
@@ -87,4 +84,8 @@ li {
 }
 #deny_button:hover {
     background-color: rgb(233, 73, 73);
+}
+
+.feedback {
+    color: red;
 }

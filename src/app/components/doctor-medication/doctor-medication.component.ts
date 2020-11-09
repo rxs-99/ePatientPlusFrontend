@@ -52,56 +52,119 @@ export class DoctorMedicationComponent implements OnInit {
         this.len = this.medications.length;
         this.pleaseWaitFlag = false;
       },
-      () => {console.log("Uh-Oh!, Couldn't fectch medications! Please try again!")}
+      () => { console.log("Uh-Oh!, Couldn't fectch medications! Please try again!") }
     );
     this.pleaseWaitFlag = true;
   }
 
-  onSelect(medication: Medication){
+  onSelect(medication: Medication) {
     this.selectedMedication = medication;
     console.log(this.selectedMedication);
   }
 
-  add(): void{
-    this.medicationService.add(this.newMedicationForm.value).subscribe(
-      val => {
-        console.log(val);
-      },
-      () => {
-        console.log("Uh-Oh!, Couldn't add new medication! Please try again!")
-        this.errorFlag = true;
-        setTimeout(()=>{this.errorFlag = false},5000);
-      }
-    )
-    this.newMedicationForm.reset();
-    setTimeout(() => {this.addMedicationFeedbackFlag = true},1000);
-    setTimeout(()=>{this.addMedicationFeedbackFlag = false},5000);
+  invalidNameFlag: boolean = false;
+  invalidSupplierFlag: boolean = false;
+  minAmountFlag: boolean = false;
+  maxAmountFlag: boolean = false;
+  invalidAmtFlag: boolean = false;
+  add(): void {
+    this.setInputFlagsFalse();
+
+    if (!(/^[a-z][a-z\s]*$/.test(this.newMedicationForm.value.name)))
+      this.invalidNameFlag = true;
+    if (!(/^[a-z][a-z\s]*$/.test(this.newMedicationForm.value.supplier)))
+      this.invalidSupplierFlag = true;
+    if (!(/^[0-9]*$/.test(this.newMedicationForm.value.amountStored)))
+      this.invalidAmtFlag = true;
+    else {
+      if (this.newMedicationForm.value.amountStored < 1)
+        this.minAmountFlag = true;
+      if (this.newMedicationForm.value.amountStored > 100)
+        this.maxAmountFlag = true;
+    }
+
+
+    if (!this.minAmountFlag && !this.invalidNameFlag && !this.invalidSupplierFlag && !this.maxAmountFlag && !this.invalidAmtFlag) {
+      this.medicationService.add(this.newMedicationForm.value).subscribe(
+        val => {
+          console.log(val);
+        },
+        () => {
+          console.log("Uh-Oh!, Couldn't add new medication! Please try again!")
+          this.errorFlag = true;
+          setTimeout(() => { this.errorFlag = false }, 5000);
+        }
+      )
+      this.newMedicationForm.reset();
+      setTimeout(() => { this.addMedicationFeedbackFlag = true }, 1000);
+      setTimeout(() => { this.addMedicationFeedbackFlag = false }, 5000);
+    }
   }
 
-  restock(): void{
-    this.restockSelectedMedication.amountStored += this.stockMedicationForm.value.amountStored;
-    this.medicationService.update(this.restockSelectedMedication).subscribe(
-      val => {
-        console.log(val);
-      },
-      () => {
-        console.log("Uh-Oh!, Couldn't fectch medications! Please try again!")
-        this.updateErrorFlag = true;
-        setTimeout(()=>{this.updateErrorFlag = false},5000);
+  invalidRestockNameFlag: boolean = false;
+  minAmountRestockFlag: boolean = false;
+  maxAmountRestockFlag: boolean = false;
+  invalidRestockAmtFlag: boolean = false;
+  restock(): void {
+    this.setInputFlagsFalse();
+
+    this.invalidRestockNameFlag = true;
+    for(let med of this.medications){
+      if(med.name === this.stockMedicationForm.value.name){
+        this.invalidRestockNameFlag = false;
+        break;
       }
-    );
-    this.stockMedicationForm.reset();
-    setTimeout(() => {this.updateMedicationFeedbackFlag = true},1000);
-    setTimeout(()=>{this.updateMedicationFeedbackFlag = false},5000);
+    }
+    // if (!(this.medications.includes(this.stockMedicationForm.value.name))){
+    //   console.log("weeeeeeeeeeeeeeeeeeeeeee");
+    //   this.invalidRestockNameFlag = true;
+    // }
+    if (!(/^[0-9]*$/.test(this.stockMedicationForm.value.amountStored)))
+      this.invalidRestockAmtFlag = true;
+    else {
+      if (this.stockMedicationForm.value.amountStored > 100)
+        this.maxAmountRestockFlag = true;
+      if (this.stockMedicationForm.value.amountStored < 1)
+        this.minAmountRestockFlag = true;
+    }
+
+    if (!this.invalidRestockNameFlag && !this.minAmountRestockFlag && !this.maxAmountRestockFlag && !this.invalidRestockAmtFlag) {
+      this.restockSelectedMedication.amountStored += this.stockMedicationForm.value.amountStored;
+      this.medicationService.update(this.restockSelectedMedication).subscribe(
+        val => {
+          console.log(val);
+        },
+        () => {
+          console.log("Uh-Oh!, Couldn't fectch medications! Please try again!")
+          this.updateErrorFlag = true;
+          setTimeout(() => { this.updateErrorFlag = false }, 5000);
+        }
+      );
+      this.stockMedicationForm.reset();
+      setTimeout(() => { this.updateMedicationFeedbackFlag = true }, 1000);
+      setTimeout(() => { this.updateMedicationFeedbackFlag = false }, 5000);
+    }
   }
 
-  restock_select(medicationName: string): void{
+  restock_select(medicationName: string): void {
     this.restockSelectedMedication = this.medications.filter(
       (data) => data.name.includes(medicationName)
     )[0];
   }
 
-  onRefresh(): void{
+  onRefresh(): void {
     this.ngOnInit();
+  }
+
+  setInputFlagsFalse(): void {
+    this.invalidNameFlag = false;
+    this.invalidSupplierFlag = false;
+    this.minAmountFlag = false;
+    this.maxAmountFlag = false;
+    this.invalidAmtFlag = false;
+    this.invalidRestockNameFlag = false;
+    this.minAmountRestockFlag = false;
+    this.maxAmountRestockFlag = false;
+    this.invalidRestockAmtFlag = false;
   }
 }

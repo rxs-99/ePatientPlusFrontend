@@ -22,9 +22,14 @@
     <div id="add-medication">
         <h2>Add Medication</h2>
         <form [formGroup]="newMedicationForm" (ngSubmit)="add()">
-            <input type="text" placeholder="name" formControlName="name">
-            <input type="text" placeholder="supplier" formControlName="supplier">
-            <input type="number" placeholder="amount" formControlName="amountStored">
+            <input type="text" placeholder="name" formControlName="name" required>
+            <p class="feedback" *ngIf="invalidNameFlag">Names can only contain letters and spaces</p>
+            <input type="text" placeholder="supplier" formControlName="supplier" required>
+            <p class="feedback" *ngIf="invalidSupplierFlag">Names can only contain letters and spaces</p>
+            <input type="number" placeholder="amount" formControlName="amountStored" required>
+            <p class="feedback" *ngIf="minAmountFlag">Minimum value is 1</p>
+            <p class="feedback" *ngIf="maxAmountFlag">Maximum value is 100</p>
+            <p class="feedback" *ngIf="invalidAmtFlag">Invalid number! Only positive numbers are allowed!</p>
             <button type="submit" [disabled]="!newMedicationForm.valid">Submit</button>
         </form>
         <p class="feedback" *ngIf="addMedicationFeedbackFlag">Successfully submitted!</p>
@@ -40,12 +45,16 @@
         <h2>Request restock</h2>
         <form [formGroup]="stockMedicationForm" (ngSubmit)="restock()">
             <input type="text" placeholder="name" list="medication-list" formControlName="name"
-                [(ngModel)]="restockSelectedMedicationName" (change)="restock_select(restockSelectedMedicationName)">
+                [(ngModel)]="restockSelectedMedicationName" (change)="restock_select(restockSelectedMedicationName)" required>
             <datalist id="medication-list">
                 <option *ngFor="let medication of medications" [value]="medication.name">{{medication.name}}</option>
             </datalist>
-            <input type="number" placeholder="amount" formControlName="amountStored">
-            <input type="submit">
+            <p class="feedback" *ngIf="invalidRestockNameFlag">Please select a medicine from the list!</p>
+            <input type="number" placeholder="amount" formControlName="amountStored" required>
+            <p class="feedback" *ngIf="minAmountRestockFlag">Minimum value is 1</p>
+            <p class="feedback" *ngIf="maxAmountRestockFlag">Maximum value is 100</p>
+            <p class="feedback" *ngIf="invalidRestockAmtFlag">Invalid number! Only positive numbers are allowed!</p>
+            <button type="submit" [disabled]="!stockMedicationForm.valid">Submit</button>
         </form>
         <p class="feedback" *ngIf="updateMedicationFeedbackFlag">Successfully submitted!</p>
         <p class="feedback" *ngIf="updateErrorFlag">Error updating database! Please try again!</p>

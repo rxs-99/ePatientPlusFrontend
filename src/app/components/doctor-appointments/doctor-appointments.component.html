@@ -51,10 +51,11 @@
         <div id="appointment_prescription_wrapper">
             <h2>Prescription</h2>
             <input type="text" [(ngModel)]="medicationName" placeholder="medication name" list="medication-list"
-                (change)="medicationSelect(medicationName)">
+                (change)="medicationSelect(medicationName)" required>
             <datalist id="medication-list">
                 <option *ngFor="let medication of medications" [value]="medication.name">{{medication.name}}</option>
             </datalist>
+            <p class="feedback" *ngIf="invalidMedicationNameFlag">Please select a medication from the list!</p>
             <!--
             <ul>
                 <li *ngFor="let medication of medications | filterPipe: medicationName" (click)="onSelectMedication(medication)">
@@ -62,9 +63,13 @@
                 </li>
             </ul>
         -->
-            <input [(ngModel)]="dosage" placeholder="dosage">
+            <input type="number" [(ngModel)]="dosage" placeholder="dosage" required>
+            <p class="feedback" *ngIf="minValueFlag">Minimum value is 1</p>
+            <p class="feedback" *ngIf="maxValueFlag">Maximum value is 50</p>
+            <p class="feedback" *ngIf="invalidAmountFlag">Invalid number! Only positive integers allowed!</p>
+            <p class="feedback" *ngIf="notEnoughMedFlag">Not enough medication in storage. Lower dosage!</p>
 
-            <button (click)="onPrescribe()">Prescribe</button>
+            <button (click)="onPrescribe()" [disabled]="!medicationName || !dosage">Prescribe</button>
         </div>
     </div>
 

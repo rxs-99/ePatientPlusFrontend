@@ -48,7 +48,7 @@ export class DoctorAppointmentsComponent implements OnInit {
         this.pleaseWaitFlag = false;
 
         this.appointments_length = this.appointments.length;
-        if(this.appointments_length === 0){
+        if (this.appointments_length === 0) {
           this.emptyAppointmentFlag = true;
         }
       },
@@ -58,6 +58,9 @@ export class DoctorAppointmentsComponent implements OnInit {
   }
 
   onSelect(selectedAppointment: Appointment): void {
+    this.setInputFlagsFalse();
+    this.medicationName = null;
+    this.dosage = null;
     this.selectedAppointment = selectedAppointment;
     console.log("selected appointment: ");
     console.log(this.selectedAppointment);
@@ -71,7 +74,7 @@ export class DoctorAppointmentsComponent implements OnInit {
         this.appointments.splice(i, 1);
         this.appointments_length--;
 
-        if(this.appointments_length === 0){
+        if (this.appointments_length === 0) {
           this.emptyAppointmentFlag = true;
         }
 
@@ -107,29 +110,67 @@ export class DoctorAppointmentsComponent implements OnInit {
     console.log(this.selectedMedication);
   }
 
+  invalidMedicationNameFlag: boolean = false;
+  minValueFlag: boolean = false;
+  maxValueFlag: boolean = false;
+  invalidAmountFlag: boolean = false;
+  notEnoughMedFlag: boolean = false;
   onPrescribe(): void {
+    this.setInputFlagsFalse();
+
+    this.invalidMedicationNameFlag = true;
+    for (let med of this.medications) {
+      if (med.name === this.medicationName) {
+        this.invalidMedicationNameFlag = false;
+        break;
+      }
+    }
+    if (!(/^[0-9]*$/.test(this.dosage.toString())))
+      this.invalidAmountFlag = true;
+    else {
+      if (this.dosage > 50)
+        this.maxValueFlag = true;
+      else if (this.dosage < 1)
+        this.minValueFlag = true;
+      else {
+        if (!this.invalidMedicationNameFlag)
+          if ((this.selectedMedication.amountStored - this.dosage) < 0)
+            this.notEnoughMedFlag = true;
+      }
+    }
+
     console.log("prescribe: ");
-    this.selectedAppointment.status = "completed";
-    this.selectedMedication.amountStored -= this.dosage;
+    if (!this.invalidMedicationNameFlag && !this.minValueFlag && !this.maxValueFlag && !this.invalidAmountFlag && !this.notEnoughMedFlag) {
+      this.selectedAppointment.status = "completed";
+      this.selectedMedication.amountStored -= this.dosage;
 
-    let prescription: Prescription = new Prescription(1, this.selectedMedication, this.selectedAppointment.patient, this.selectedAppointment.doctor, this.dosage);
+      let prescription: Prescription = new Prescription(1, this.selectedMedication, this.selectedAppointment.patient, this.selectedAppointment.doctor, this.dosage);
 
-    console.log(this.selectedAppointment);
-    this.appointmentService.update(this.selectedAppointment).subscribe(val => console.log(val));
-    this.medicationService.update(this.selectedMedication).subscribe(val => console.log(val));
-    this.prescriptionService.add(prescription).subscribe(val => console.log(val));
-    this.removeSelected();
+      console.log(this.selectedAppointment);
+      this.appointmentService.update(this.selectedAppointment).subscribe(val => console.log(val));
+      this.medicationService.update(this.selectedMedication).subscribe(val => console.log(val));
+      this.prescriptionService.add(prescription).subscribe(val => console.log(val));
+      this.removeSelected();
 
-    console.log(this.selectedAppointment);
-    console.log(this.selectedMedication);
-    console.log(prescription);
+      console.log(this.selectedAppointment);
+      console.log(this.selectedMedication);
+      console.log(prescription);
 
-    this.medicationName = null;
-    this.dosage = null;
+      this.medicationName = null;
+      this.dosage = null;
+    }
   }
 
   onRefresh(): void {
     this.ngOnInit();
+  }
+
+  setInputFlagsFalse(): void {
+    this.invalidMedicationNameFlag = false;
+    this.minValueFlag = false;
+    this.maxValueFlag = false;
+    this.invalidAmountFlag = false;
+    this.notEnoughMedFlag = false;
   }
 
 }
