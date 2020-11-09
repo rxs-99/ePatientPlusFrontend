@@ -13,6 +13,8 @@ import { PrescriptionService } from 'src/app/services/prescription.service';
 })
 export class DoctorAppointmentsComponent implements OnInit {
 
+  searchText: string = "";
+
   emptyAppointmentFlag: boolean = false;
   pleaseWaitFlag: boolean = false;
 

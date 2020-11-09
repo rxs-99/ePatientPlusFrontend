@@ -79,3 +79,7 @@ input[type=text],input[type=number] {
 .feedback {
     color: red;
 }
+
+#doctor-medications > h2 {
+    size: 1.1em;
+}

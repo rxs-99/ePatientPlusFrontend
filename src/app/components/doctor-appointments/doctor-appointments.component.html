@@ -1,4 +1,7 @@
 <div id="doctor_appointments" *ngIf="appointments_length">
+    <h2>Appointments</h2>
+    <input type="text" [(ngModel)]="searchText" placeholder="Search ... " />
+
     <table class="mi_table" id="doctor_pending_list">
         <thead>
             <tr>
@@ -6,7 +9,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let appointment of appointments" (click)="onSelect(appointment)">
+            <tr *ngFor="let appointment of appointments | appointmentFilter:searchText" (click)="onSelect(appointment)" [class.selected]="appointment === selectedAppointment">
                 <td>{{appointment.id}}</td>
                 <td>{{appointment.patient.name}}</td>
                 <td>{{appointment.date | date: 'yyyy/MM/dd'}}</td>

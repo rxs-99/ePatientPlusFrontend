@@ -2,6 +2,10 @@
     background-color: rgb(246, 233, 180);
 }
 
+#doctor_pending_list > tbody > tr.selected {
+    background-color: rgb(246, 233, 180);
+}
+
 #selected_appointment_wrapper {
     background-color: rgb(216, 216, 216);
 }
@@ -88,4 +92,14 @@ li {
 
 .feedback {
     color: red;
+}
+
+#doctor_appointments > input[type=text] {
+    height: 25px;
+    padding: 5px;
+    margin: 5px;
+}
+
+#doctor_appointments > h2 {
+    margin: 0px;
 }
