@@ -24,6 +24,7 @@
         <form [formGroup]="newMedicationForm" (ngSubmit)="add()">
             <input type="text" placeholder="name" formControlName="name" required>
             <p class="feedback" *ngIf="invalidNameFlag">Names can only contain letters and spaces</p>
+            <p class="feedback" *ngIf="duplicateMedFlag">Medication with that name already exists!</p>
             <input type="text" placeholder="supplier" formControlName="supplier" required>
             <p class="feedback" *ngIf="invalidSupplierFlag">Names can only contain letters and spaces</p>
             <input type="number" placeholder="amount" formControlName="amountStored" required>
