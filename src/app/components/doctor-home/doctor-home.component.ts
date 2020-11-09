@@ -11,6 +11,7 @@ export class DoctorHomeComponent implements OnInit {
   options: string[] = [
     "Appointments",
     "Medications",
+    "Profile",
     "Log Out"
   ];
 
@@ -18,6 +19,7 @@ export class DoctorHomeComponent implements OnInit {
 
   appointmentsVisibility: boolean;
   medicationsVisibility: boolean;
+  profileVisibility: boolean;
 
   constructor(private authService: AuthService) { }
 
@@ -28,14 +30,23 @@ export class DoctorHomeComponent implements OnInit {
     this.selected_option = selected_option;
 
     if (selected_option === 'Appointments') {
+      this.setAllVisibilityFalse();
       this.appointmentsVisibility = true;
-      this.medicationsVisibility = false;
     } else if (selected_option === 'Medications') {
+      this.setAllVisibilityFalse();
       this.medicationsVisibility = true;
-      this.appointmentsVisibility = false;
     } else if (selected_option === 'Log Out') {
       this.logout();
+    } else if (selected_option === 'Profile'){
+      this.setAllVisibilityFalse();
+      this.profileVisibility = true;
     }
+  }
+
+  setAllVisibilityFalse(): void{
+    this.appointmentsVisibility = false;
+    this.medicationsVisibility = false;
+    this.profileVisibility = false;
   }
 
   logout(): void {

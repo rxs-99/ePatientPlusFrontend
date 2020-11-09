@@ -69,7 +69,7 @@ export class DoctorMedicationComponent implements OnInit {
       },
       () => {
         console.log("Uh-Oh!, Couldn't add new medication! Please try again!")
-        setTimeout(() => {this.errorFlag = true},1000);
+        this.errorFlag = true;
         setTimeout(()=>{this.errorFlag = false},5000);
       }
     )
@@ -86,7 +86,7 @@ export class DoctorMedicationComponent implements OnInit {
       },
       () => {
         console.log("Uh-Oh!, Couldn't fectch medications! Please try again!")
-        setTimeout(() => {this.updateErrorFlag = true},1000);
+        this.updateErrorFlag = true;
         setTimeout(()=>{this.updateErrorFlag = false},5000);
       }
     );
