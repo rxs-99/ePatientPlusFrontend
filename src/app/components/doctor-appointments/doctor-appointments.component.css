@@ -2,6 +2,10 @@
     background-color: rgb(246, 233, 180);
 }
 
+#doctor_pending_list > tbody > tr.selected {
+    background-color: rgb(246, 233, 180);
+}
+
 #selected_appointment_wrapper {
     background-color: rgb(216, 216, 216);
 }

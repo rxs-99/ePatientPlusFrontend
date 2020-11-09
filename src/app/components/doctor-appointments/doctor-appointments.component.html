@@ -9,7 +9,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let appointment of appointments | appointmentFilter:searchText" (click)="onSelect(appointment)">
+            <tr *ngFor="let appointment of appointments | appointmentFilter:searchText" (click)="onSelect(appointment)" [class.selected]="appointment === selectedAppointment">
                 <td>{{appointment.id}}</td>
                 <td>{{appointment.patient.name}}</td>
                 <td>{{appointment.date | date: 'yyyy/MM/dd'}}</td>
