@@ -1,4 +1,6 @@
 <div id="doctor-medications" *ngIf="len">
+    <h2>Medications</h2>
+    <input type="text" [(ngModel)]="searchText" placeholder="Search ... " />
     <table class="mi_table" id="doctor-medication-list">
         <thead>
             <tr>
@@ -6,7 +8,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let med of medications" (click)="onSelect(med)">
+            <tr *ngFor="let med of medications | filterPipe:searchText" (click)="onSelect(med)">
                 <td>{{med.id}}</td>
                 <td>{{med.name}}</td>
                 <td>{{med.supplier}}</td>

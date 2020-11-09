@@ -10,6 +10,8 @@ import { MedicationService } from 'src/app/services/medication.service';
 })
 export class DoctorMedicationComponent implements OnInit {
 
+  searchText: string = "";
+
   pleaseWaitFlag: boolean = false;
   addMedicationFeedbackFlag: boolean = false;
   errorFlag: boolean = false;

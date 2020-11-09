@@ -28,6 +28,7 @@ import { NurseSidebarComponent } from './components/_feature/nurse-sidebar/nurse
 import { AuthTokenExpiredComponent } from './components/auth-token-expired/auth-token-expired.component';
 import { AuthTokenNotFoundComponent } from './components/auth-token-not-found/auth-token-not-found.component';
 import { DoctorProfileComponent } from './components/doctor-profile/doctor-profile.component';
+import { AppointmentFilterPipe } from './pipes/appointment-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { DoctorProfileComponent } from './components/doctor-profile/doctor-profi
     NurseSidebarComponent,
     AuthTokenExpiredComponent,
     AuthTokenNotFoundComponent,
-    DoctorProfileComponent
+    DoctorProfileComponent,
+    AppointmentFilterPipe
   ],
   imports: [
     BrowserModule,
