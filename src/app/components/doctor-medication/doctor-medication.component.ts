@@ -67,12 +67,13 @@ export class DoctorMedicationComponent implements OnInit {
   minAmountFlag: boolean = false;
   maxAmountFlag: boolean = false;
   invalidAmtFlag: boolean = false;
+  duplicateMedFlag: boolean = false;
   add(): void {
     this.setInputFlagsFalse();
 
-    if (!(/^[a-z][a-z\s]*$/.test(this.newMedicationForm.value.name)))
+    if (!(/^[a-zA-Z][a-zA-Z\s]*$/.test(this.newMedicationForm.value.name)))
       this.invalidNameFlag = true;
-    if (!(/^[a-z][a-z\s]*$/.test(this.newMedicationForm.value.supplier)))
+    if (!(/^[a-zA-Z][a-zA-Z\s]*$/.test(this.newMedicationForm.value.supplier)))
       this.invalidSupplierFlag = true;
     if (!(/^[0-9]*$/.test(this.newMedicationForm.value.amountStored)))
       this.invalidAmtFlag = true;
@@ -83,8 +84,15 @@ export class DoctorMedicationComponent implements OnInit {
         this.maxAmountFlag = true;
     }
 
+    for(let med of this.medications){
+      if(med.name === this.newMedicationForm.value.name){
+        this.duplicateMedFlag = true;
+        break;
+      }
+    }
 
-    if (!this.minAmountFlag && !this.invalidNameFlag && !this.invalidSupplierFlag && !this.maxAmountFlag && !this.invalidAmtFlag) {
+
+    if (!this.minAmountFlag && !this.invalidNameFlag && !this.invalidSupplierFlag && !this.maxAmountFlag && !this.invalidAmtFlag && !this.duplicateMedFlag) {
       this.medicationService.add(this.newMedicationForm.value).subscribe(
         val => {
           console.log(val);
@@ -166,5 +174,6 @@ export class DoctorMedicationComponent implements OnInit {
     this.minAmountRestockFlag = false;
     this.maxAmountRestockFlag = false;
     this.invalidRestockAmtFlag = false;
+    this.duplicateMedFlag = false;
   }
 }
