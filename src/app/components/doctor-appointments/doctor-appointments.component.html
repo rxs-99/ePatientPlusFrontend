@@ -19,21 +19,36 @@
         </tbody>
     </table>
 
-    <div *ngIf="selectedAppointment">
-        <h2>{{selectedAppointment.patient.name}}</h2>
-        <ul>
-            <li>ID: {{selectedAppointment.id}}</li>
-            <li>Status: {{selectedAppointment.status}}</li>
-            <li>Date: {{selectedAppointment.date | date: 'yyyy/MM/dd'}}</li>
-            <li *ngIf="selectedAppointment.comment; else na">Comment: {{selectedAppointment.comment}}</li>
-            <ng-template #na>
-                <li>Comment: N/A</li>
-            </ng-template>
-        </ul>
+    <div id="selected_appointment_wrapper" *ngIf="selectedAppointment">
 
-        <button (click)="onClickDeny()">Deny</button>
+        <div class="white"></div>
+        <div class="horizontal_line"></div>
+        <div class="white"></div>
 
-        <div>
+        <div id="selected_appointment">
+            <h2>{{selectedAppointment.patient.name}}</h2>
+            <ul>
+                <li><span class="appointment_detail_titles">ID:</span> {{selectedAppointment.id}}</li>
+                <li><span class="appointment_detail_titles">Status:</span> {{selectedAppointment.status}}</li>
+                <li><span class="appointment_detail_titles">Date:</span>
+                    {{selectedAppointment.date | date: 'yyyy/MM/dd'}}</li>
+                <li *ngIf="selectedAppointment.comment; else na"><span class="appointment_detail_titles">Comment:</span>
+                    {{selectedAppointment.comment}}</li>
+                <ng-template #na>
+                    <li><span class="appointment_detail_titles">Comment:</span> N/A</li>
+                </ng-template>
+            </ul>
+        </div>
+
+        <div class="buttons">
+            <button id="deny_appointment" (click)="onClickDeny()" id="deny_button">Deny</button>
+        </div>
+
+        <div class="white"></div>
+        <div class="horizontal_line"></div>
+        <div class="white"></div>
+
+        <div id="appointment_prescription_wrapper">
             <h2>Prescription</h2>
             <input type="text" [(ngModel)]="medicationName" placeholder="medication name" list="medication-list"
                 (change)="medicationSelect(medicationName)">
@@ -63,4 +78,6 @@
     Loading ... Please wait!
 </p>
 
-<button (click)="onRefresh()">Refresh</button>
+<div class="buttons">
+    <button (click)="onRefresh()" id="refresh_button">Refresh</button>
+</div>

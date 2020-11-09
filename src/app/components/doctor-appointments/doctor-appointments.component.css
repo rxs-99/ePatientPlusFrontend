@@ -1,7 +1,90 @@
-#doctor_pending_list, button {
+#doctor_pending_list > tbody > tr:hover {
+    background-color: rgb(246, 233, 180);
+}
+
+#selected_appointment_wrapper {
+    background-color: rgb(216, 216, 216);
+}
+
+#selected_appointment {
     margin: 10px;
 }
 
-#doctor_pending_list > tbody > tr:hover {
-    background-color: rgb(228, 245, 239);
+#selected_appointment > ul {
+    list-style: none;
+}
+
+h2 {
+    margin-top: 10px;
+}
+
+li {
+    font-size: 1.1em;
+}
+
+.appointment_detail_titles {
+    font-weight: bold;
+}
+
+.horizontal_line {
+    display: block;
+    border-top: 1px solid black;
+}
+
+.white {
+    display: block;
+    background-color: white;
+    height: 10px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px;
+}
+
+.buttons > button {
+    font-size: 1.1em;
+}
+
+#appointment_prescription_wrapper {
+    margin: 0px 10px 0px 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+#appointment_prescription_wrapper > input {
+    height: 25px;
+    padding: 5px;
+    margin: 5px;
+    font-size: 1.05em;
+}
+
+#appointment_prescription_wrapper > button {
+    background-color: rgb(141, 238, 141);
+    font-size: 1.1em;
+}
+
+#appointment_prescription_wrapper > button:hover {
+    background-color: rgb(114, 241, 114);
+}
+
+#appointment_prescription_wrapper > button {
+    height: 25px;
+    margin: 5px 5px 10px 5px
+}
+
+#refresh_button {
+    background-color: rgb(141, 238, 141);
+}
+
+#refresh_button:hover {
+    background-color: rgb(86, 248, 121);
+}
+
+#deny_button {
+    background-color: rgb(230, 120, 120);
+}
+#deny_button:hover {
+    background-color: rgb(233, 73, 73);
 }

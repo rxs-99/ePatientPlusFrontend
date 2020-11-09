@@ -27,6 +27,7 @@ import { NotAuthorizedComponent } from './components/not-authorized/not-authoriz
 import { NurseSidebarComponent } from './components/_feature/nurse-sidebar/nurse-sidebar.component';
 import { AuthTokenExpiredComponent } from './components/auth-token-expired/auth-token-expired.component';
 import { AuthTokenNotFoundComponent } from './components/auth-token-not-found/auth-token-not-found.component';
+import { DoctorProfileComponent } from './components/doctor-profile/doctor-profile.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { AuthTokenNotFoundComponent } from './components/auth-token-not-found/au
     NotAuthorizedComponent,
     NurseSidebarComponent,
     AuthTokenExpiredComponent,
-    AuthTokenNotFoundComponent
+    AuthTokenNotFoundComponent,
+    DoctorProfileComponent
   ],
   imports: [
     BrowserModule,

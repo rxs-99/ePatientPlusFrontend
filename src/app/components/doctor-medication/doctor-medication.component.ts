@@ -10,6 +10,12 @@ import { MedicationService } from 'src/app/services/medication.service';
 })
 export class DoctorMedicationComponent implements OnInit {
 
+  pleaseWaitFlag: boolean = false;
+  addMedicationFeedbackFlag: boolean = false;
+  errorFlag: boolean = false;
+  updateMedicationFeedbackFlag: boolean = false;
+  updateErrorFlag: boolean = false;
+
   medications: Medication[] = [];
   len: number = 0;
 
@@ -44,10 +50,11 @@ export class DoctorMedicationComponent implements OnInit {
       data => {
         this.medications = data;
         this.len = this.medications.length;
-        console.log(this.medications);
+        this.pleaseWaitFlag = false;
       },
       () => {console.log("Uh-Oh!, Couldn't fectch medications! Please try again!")}
-    )
+    );
+    this.pleaseWaitFlag = true;
   }
 
   onSelect(medication: Medication){
@@ -60,8 +67,15 @@ export class DoctorMedicationComponent implements OnInit {
       val => {
         console.log(val);
       },
-      () => {console.log("Uh-Oh!, Couldn't add new medication! Please try again!")}
+      () => {
+        console.log("Uh-Oh!, Couldn't add new medication! Please try again!")
+        this.errorFlag = true;
+        setTimeout(()=>{this.errorFlag = false},5000);
+      }
     )
+    this.newMedicationForm.reset();
+    setTimeout(() => {this.addMedicationFeedbackFlag = true},1000);
+    setTimeout(()=>{this.addMedicationFeedbackFlag = false},5000);
   }
 
   restock(): void{
@@ -70,8 +84,15 @@ export class DoctorMedicationComponent implements OnInit {
       val => {
         console.log(val);
       },
-      () => {console.log("Uh-Oh!, Couldn't fectch medications! Please try again!")}
-    )
+      () => {
+        console.log("Uh-Oh!, Couldn't fectch medications! Please try again!")
+        this.updateErrorFlag = true;
+        setTimeout(()=>{this.updateErrorFlag = false},5000);
+      }
+    );
+    this.stockMedicationForm.reset();
+    setTimeout(() => {this.updateMedicationFeedbackFlag = true},1000);
+    setTimeout(()=>{this.updateMedicationFeedbackFlag = false},5000);
   }
 
   restock_select(medicationName: string): void{

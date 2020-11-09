@@ -87,7 +87,8 @@
 }
 
 #doctor_view {
-  width: 70%;
+  width: 100%;
+  padding: 20px;
 }
 
 #doctor_options > ul > li.selected {

@@ -123,6 +123,9 @@ export class DoctorAppointmentsComponent implements OnInit {
     console.log(this.selectedAppointment);
     console.log(this.selectedMedication);
     console.log(prescription);
+
+    this.medicationName = null;
+    this.dosage = null;
   }
 
   onRefresh(): void {
