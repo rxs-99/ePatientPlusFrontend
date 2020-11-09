@@ -52,13 +52,13 @@ input[type=text],input[type=number] {
     flex-direction: row;
 }
 
-#request-restock > form > input[type=submit] {
+#request-restock > form > button[type=submit] {
     margin: 5px 0px;
     font-size: 1.05em;
     background-color: rgb(141, 238, 141);
 }
 
-#request-restock > form > input[type=submit]:hover {
+#request-restock > form > button[type=submit]:hover {
     background-color: rgb(86, 248, 121);
 }
 
