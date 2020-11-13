@@ -1,27 +1,26 @@
-# EPatientFrontend
+# E-Patient Plus
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.7.
+E-Patient Plus manages healthcare providers' e-medicine offerings. All patients can log in, schedule appointments with healthcare providers, and request refills on prescriptions. Nurses and doctors can log in and approve or reject appointments from patients and prescribe medications through the application.
 
-## Development server
+## Patient Features:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Login
+- Schedule appointment
+- Request prescription refills
 
-## Code scaffolding
+## Nurse Features:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Login
+- Approve or reject appointments
+- View previous appointments with their doctor
 
-## Build
+## Doctor Features:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+- Login
+- Approve or reject appointments
+- Prescribe medications to patients
+- Add new medications
 
-## Running unit tests
+## Technologies used:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- Java, Spring, Angular, Jenkins, PostgreSQL, Hibernate, TypeScript, Selenium / Webdriver, TestNG, EC2, DevOps, Agile-Scrum
